@@ -42,8 +42,6 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
             "Footer Information",
             {
                 "fields": (
-                    # Keep old paragraph temporarily for safe migration
-                    # "business_paragraph",
                     ("social_1_name", "social_1_url"),
                     ("social_2_name", "social_2_url"),
                     "copyright_text",

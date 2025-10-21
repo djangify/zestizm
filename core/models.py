@@ -64,6 +64,19 @@ class HomePageSettings(models.Model):
         help_text="Optional hero background image (recommended 700×500px).",
     )
 
+    # ✅ NEW: Independent Hero Call-to-Action
+    hero_button_text = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text="Optional button text for the hero area (e.g. 'Shop Now').",
+    )
+    hero_button_link = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Optional button link for the hero area (e.g. product or shop URL).",
+    )
+
     # --- Footer Info ---
     social_1_name = models.CharField(
         max_length=50, blank=True, null=True, help_text="e.g. LinkedIn"
