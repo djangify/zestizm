@@ -15,11 +15,11 @@
   </h1>
 </section>
   <!-- Category Pills -->
-  <div id="categories-grid" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-10 uppercase px-4">
+  {% comment %} <div id="categories-grid" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-10 uppercase px-4">
     <a href="{% url 'core:home' %}"
     class="px-4 py-2 rounded-md text-sm font-semibold border border-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition-colors {% if not current_category %}bg-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] font-bold border-[color:var(--color-brand-accent)]{% endif %}">
     All Products
-  </a>
+  </a> {% endcomment %}
     {% for category in categories %}
     <a href="?category={{ category.slug }}#latest-products"
       class="px-4 py-2 rounded-md text-sm font-semibold border border-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition-colors {% if current_category and current_category.slug == category.slug %}bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] border-[color:var(--color-brand-secondary)]{% endif %}">

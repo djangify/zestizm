@@ -34,6 +34,7 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
                     "hero_title",
                     "hero_paragraph",
                     "hero_image",
+                    ("hero_button_text", "hero_button_link"),
                 ),
                 "description": "Main hero content displayed on the homepage.",
             },
