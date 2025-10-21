@@ -17,7 +17,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("news:category", kwargs={"slug": self.slug})
+        return reverse("blog:category", kwargs={"slug": self.slug})
 
 
 class Post(models.Model):
@@ -52,7 +52,7 @@ class Post(models.Model):
     publish_date = models.DateTimeField(null=True, blank=True)
 
     # Media fields
-    image = models.ImageField(upload_to="news/images/", null=True, blank=True)
+    image = models.ImageField(upload_to="blog/images/", null=True, blank=True)
     external_image_url = models.URLField(
         max_length=500,
         blank=True,
@@ -60,11 +60,11 @@ class Post(models.Model):
         help_text="External URL for product image (jpg/png only)",
     )
     youtube_url = models.URLField(blank=True, null=True)
-    thumbnail = models.ImageField(upload_to="news/thumbnails/", null=True, blank=True)
+    thumbnail = models.ImageField(upload_to="blog/thumbnails/", null=True, blank=True)
     resource_type = models.CharField(
         max_length=20, choices=RESOURCE_TYPES, default="none"
     )
-    resource = models.FileField(upload_to="news/resources/", null=True, blank=True)
+    resource = models.FileField(upload_to="blog/resources/", null=True, blank=True)
     resource_title = models.CharField(
         max_length=200, blank=True, help_text="Name of the downloadable resource"
     )
@@ -72,7 +72,7 @@ class Post(models.Model):
     # Advertisement fields
     ad_type = models.CharField(max_length=10, choices=AD_TYPE_CHOICES, default="none")
     ad_code = models.TextField(blank=True)
-    ad_image = models.ImageField(upload_to="news/ads/", null=True, blank=True)
+    ad_image = models.ImageField(upload_to="blog/ads/", null=True, blank=True)
     ad_url = models.URLField(blank=True)
 
     # SEO fields
@@ -93,7 +93,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("news:detail", kwargs={"slug": self.slug})
+        return reverse("blog:detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -150,14 +150,6 @@ class Post(models.Model):
         """Get meta description with fallback logic"""
         if self.meta_description:
             return self.meta_description
-
-        # Try introduction first (if it exists)
-        if self.introduction:
-            from django.utils.html import strip_tags
-
-            clean_intro = strip_tags(self.introduction)
-            return clean_intro[:160]
-
         # Fall back to content
         if self.content:
             from django.utils.html import strip_tags

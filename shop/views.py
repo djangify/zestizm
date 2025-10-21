@@ -12,7 +12,6 @@ from django.views.decorators.csrf import csrf_exempt
 import stripe
 import os
 import logging
-from django.db.models import Q
 import mimetypes
 from wsgiref.util import FileWrapper
 from shop.forms import GuestDetailsForm, ProductReviewForm
@@ -26,59 +25,27 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 logger = logging.getLogger("shop")
 
 
+# shop/views.py
 def product_list(request, template_name="core/home.html"):
     """
-    Main product listing view.
-    Displays 4 latest products at the top (by publish date)
-    and excludes them from the main 8-product paginated grid below.
+    Simplified product listing.
+    Displays up to 3 active products directly on the homepage.
     """
-    categories = Category.objects.all()
-    query = request.GET.get("q", "").strip()
-    category_slug = request.GET.get("category")
-
-    # Base queryset
-    base_products = Product.objects.filter(
+    products = Product.objects.filter(
         is_active=True, status__in=["publish", "soon", "full"]
-    ).order_by("-created")
+    ).order_by("order", "-created")[:3]
 
-    current_category = None
-    if category_slug:
-        current_category = get_object_or_404(Category, slug=category_slug)
-        base_products = base_products.filter(category=current_category)
-
-    if query:
-        base_products = base_products.filter(
-            Q(title__icontains=query) | Q(description__icontains=query)
-        )
-
-    # Top 4 latest products
-    latest_products = base_products[:4]
-    latest_ids = latest_products.values_list("id", flat=True)
-
-    # Exclude those from bottom section
-    remaining_products = base_products.exclude(id__in=latest_ids)
-
-    # Paginate the remaining products (8 per page)
-    paginator = Paginator(remaining_products, 8)
-    page = request.GET.get("page")
-    products = paginator.get_page(page)
-
-    # Featured products (limit 2)
     featured_products = Product.objects.filter(
         featured=True, is_active=True, status="publish"
-    ).order_by("order", "-created")[:2]
+    ).order_by("order", "-created")[:1]
 
     return render(
         request,
         template_name,
         {
-            "latest_products": latest_products,
             "products": products,
-            "categories": categories,
-            "current_category": current_category,
-            "stripe_publishable_key": getattr(settings, "STRIPE_PUBLISHABLE_KEY", ""),
-            "query": query,
             "featured_products": featured_products,
+            "stripe_publishable_key": getattr(settings, "STRIPE_PUBLISHABLE_KEY", ""),
         },
     )
 

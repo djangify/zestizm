@@ -3,26 +3,26 @@
 <html lang="en">
  <head>
     <!-- Preconnect & Prefetch -->
-  <link rel="preconnect" href="https://www.djangify.com" crossorigin>
-  <link rel="dns-prefetch" href="https://www.djangify.com">
+  <link rel="preconnect" href="https://www.zestizm.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.zestizm.com">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Primary Meta Description -->
   {% block meta_description %}
-  <meta name="description" content="Djangify helps creators and entrepreneurs build AI-search-ready ecommerce shops and digital systems using Django. Simple, practical, and ready to grow.">
+  <meta name="description" content="Zestizm celebrates midlife and age as an evolution, not a decline. It’s about energy, curiosity, and confidence — not perfection.">
   {% endblock %}
 
   <!-- Keywords -->
-  <meta name="keywords" content="{% block meta_keywords %}mini ecommerce shop, mini ecommerce store, AI search ready websites, Django ecommerce, digital product systems, build online shops, ecommerce setup, digital business guides{% endblock %}">
+  <meta name="keywords" content="{% block meta_keywords %}age positive, positive aging, positive ageing, pro-age, pro-aging, midlife positivity{% endblock %}">
 
   <!-- Open Graph / Social -->
   {% block open_graph_tags %}
-  <meta property="og:title" content="Build Your Mini eCommerce Shop with Djangify">
-  <meta property="og:description" content="Djangify helps creators and entrepreneurs build mini ecommerce shops and digital systems using Django. Simple, practical, and ready to grow.">
+  <meta property="og:title" content="Celebrate being Age Positive with Zestizm">
+  <meta property="og:description" content="Zestizm celebrates age as an evolution, not a decline. It’s about energy, curiosity, and confidence.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ request.build_absolute_uri }}">
-  <meta property="og:image" content="{% static 'images/djangify-logo.png' %}">
+  <meta property="og:image" content="{% static 'images/zestizm-logo.png' %}">
   <meta property="fb:app_id" content="2433552923679047">
   {% endblock %}
 
@@ -30,11 +30,11 @@
   <link rel="canonical" href="{{ request.build_absolute_uri }}">
 
   <!-- Stylesheets -->
-  <link rel="preload" as="style" href="{% static 'dist/output.css' %}">
+  <link rel="preload" as="style" href="{% static 'css/output.css' %}">
   <link rel="preload" as="style" href="{% static 'css/custom.css' %}">
-  <link rel="stylesheet" href="{% static 'dist/output.css' %}" media="all" onload="this.onload=null;this.removeAttribute('media');">
+  <link rel="stylesheet" href="{% static 'css/output.css' %}" media="all" onload="this.onload=null;this.removeAttribute('media');">
   <link rel="stylesheet" href="{% static 'css/custom.css' %}" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="{% static 'dist/output.css' %}"></noscript>
+  <noscript><link rel="stylesheet" href="{% static 'css/output.css' %}"></noscript>
   <noscript><link rel="stylesheet" href="{% static 'css/custom.css' %}"></noscript>
 
     
@@ -42,7 +42,7 @@
   <link rel="icon" type="image/ico" href="{% static 'images/favicon.ico' %}">
 
   <!-- Page Title -->
-  <title>{% block title %}Mini eCommerce Shops & Digital Systems | {{ site.name }}{% endblock %}</title>
+  <title>{% block title %}Age Positivity | {{ site.name }}{% endblock %}</title>
 
   {% block extra_meta %}{% endblock %}
   <!-- Website JSON-LD Schema -->
@@ -50,20 +50,20 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Djangify",
-    "url": "https://djangify.com/",
-    "description": "Djangify helps creators and entrepreneurs build mini ecommerce shops and digital systems using Django. Simple, practical, and ready to grow.",
+    "name": "Zestizm",
+    "url": "https://zestizm.com/",
+    "description": "Zestizm celebrates midlife and age as an evolution, not a decline. It’s about energy, curiosity, and confidence — not perfection.",
     "publisher": {
       "@type": "Organization",
-      "name": "Djangify",
+      "name": "Zestim",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://djangify.com/static/images/djangify-logo.png"
+        "url": "https://zestizm.com/static/images/zestizm-logo.png"
       }
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://djangify.com/shop/search/?q={search_term_string}",
+      "target": "https://zestizm.com/shop/search/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
