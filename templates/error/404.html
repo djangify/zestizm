@@ -63,7 +63,7 @@
         
         {% if selected_category %}
         <div class="text-center mt-8">
-            <a href="{% url 'news:category' selected_category.slug %}" 
+            <a href="{% url 'blog:category' selected_category.slug %}" 
                class="inline-flex items-center px-6 py-3 text-sm border-2 border-accent rounded-full text-[color:var(--color-brand-accent)] hover:bg-accent hover:text-white transition-colors">
                 See all {{ selected_category.name }} articles
             </a>
