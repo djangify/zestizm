@@ -1,0 +1,35 @@
+<nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 mb-8" aria-label="Breadcrumb">
+  <ol class="flex items-center text-sm text-[color:var(--color-font-main)] gap-2">
+
+    <!-- Home -->
+    <li class="flex items-center">
+      <a href="{% url 'core:home' %}" class="hover:text-[color:var(--color-brand-accent)] transition-colors">Home</a>
+      <i class="fa-solid fa-angle-right mx-2 text-[color:var(--color-brand-accent)]/70"></i>
+    </li>
+
+    <!-- Shop -->
+    <li class="flex items-center">
+      <a href="{% url 'core:home' %}#latest-products" class="hover:text-[color:var(--color-brand-accent)] transition-colors">Shop</a>
+      {% if product.category %}
+      <i class="fa-solid fa-angle-right mx-2 text-[color:var(--color-brand-accent)]/70"></i>
+      {% endif %}
+    </li>
+
+    <!-- Category -->
+    {% if product.category %}
+    <li class="flex items-center">
+      <a href="{{ product.category.get_absolute_url }}" class="hover:text-[color:var(--color-brand-accent)] transition-colors">
+        {{ product.category.name }}
+      </a>
+      <i class="fa-solid fa-angle-right mx-2 text-[color:var(--color-brand-accent)]/70"></i>
+    </li>
+    {% endif %}
+
+    <!-- Current Product -->
+    {% if product %}
+    <li class="text-[color:var(--color-brand-accent)] font-semibold">
+      {{ product.title|truncatechars:50 }}
+    </li>
+    {% endif %}
+  </ol>
+</nav>

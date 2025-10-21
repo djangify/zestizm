@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="w-full py-12 bg-[color:var(--color-brand-light)]">
+  <div class="max-w-6xl mx-auto px-6 space-y-16">
+
+    <!-- Welcome Header -->
+    <div class="bg-white rounded-xl border border-[color:var(--color-brand-accent)]/40 p-8 text-center">
+      <h1 class="text-3xl font-bold text-[color:var(--color-brand-primary)] mb-2">
+        {{ dashboard_settings.welcome_heading|default:"Welcome back, " }} {{ user.first_name|default:user.username }}
+      </h1>
+      {% if dashboard_settings.intro_text %}
+      <p class="text-[color:var(--color-font-main)]/80 mb-8">
+        {{ dashboard_settings.intro_text|safe }}
+      </p>
+      {% endif %}
+      {% include 'accounts/includes/dashboard_quick_actions.html' %}
+    </div>
+
+    <!-- Wishlist -->
+    <div class="bg-white rounded-xl border border-[color:var(--color-brand-accent)]/40 p-8">
+      <h2 class="text-2xl font-semibold text-[color:var(--color-brand-primary)] mb-6">
+        Your Wish List
+      </h2>
+      {% include 'accounts/includes/dashboard_wishlist.html' %}
+    </div>
+
+    <!-- Free Resources -->
+    <div class="bg-white rounded-xl border border-[color:var(--color-brand-accent)]/40 p-8">
+      <h2 class="text-2xl font-semibold text-[color:var(--color-brand-primary)] mb-6">
+        Free Member Resources
+      </h2>
+      {% include 'accounts/includes/profile_resources.html' %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

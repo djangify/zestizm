@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- news/templates/news/list.html -->
+<section class="pageformat">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Page Heading -->
+    <div class="mb-12 text-center md:text-left">
+      <h1 class="text-3xl font-bold text-[color:var(--color-brand-dark)] leading-normal mb-4">
+        News · Articles · Blog Posts
+      </h1>
+      <p class="text-[color:var(--color-font-main)]/80 max-w-3xl">
+        Industry News. Informative Articles. Informal Blog Posts.  
+        All related to working in the world of eCommerce and running a lifestyle business.
+      </p>
+    </div>
+
+    <!-- Category Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-6">Category</h2>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-3 mb-12">
+        {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}"
+           class="px-4 py-2 text-sm font-semibold border border-[color:var(--color-brand-accent)] rounded-full
+                  text-[color:var(--color-font-main)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition
+                  {% if current_category and current_category.id == category.id %} bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)]{% endif %}">
+          {{ category.name }}
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Featured Blog Posts -->
+    {% if featured_posts %}
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-8">Featured Articles</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for post in featured_posts|slice:"0:4" %}
+        <article class="bg-white rounded-lg border border-[color:var(--color-brand-accent)]/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
+          <a href="{{ post.get_absolute_url }}">
+            {% if post.external_image_url %}
+              <img src="{{ post.external_image_url }}" alt=" image for {{ post.title }}" class="w-full h-48 object-cover">
+            {% elif post.get_image_url %}
+              <img src="{{ post.get_image_url }}" alt="image for {{ post.title }}" class="w-full h-48 object-cover">
+            {% elif post.youtube_url %}
+              <img src="https://img.youtube.com/vi/{{ post.get_youtube_video_id }}/maxresdefault.jpg"
+                   alt="video image for {{ post.title }}"
+                   class="w-full h-48 object-cover"
+                   onerror="this.onerror=null; this.src='https://img.youtube.com/vi/{{ post.get_youtube_video_id }}/hqdefault.jpg';">
+            {% endif %}
+          </a>
+          <div class="p-6 flex flex-col flex-grow">
+            <h2 class="text-lg font-bold text-[color:var(--color-brand-dark)] mb-2">{{ post.title }}</h2>
+            <p class="text-[color:var(--color-font-main)]/80 mb-4 flex-grow">
+              {{ post.content|striptags|truncatewords:25 }}
+            </p>
+            <a href="{{ post.get_absolute_url }}"
+               class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">
+              Keep Reading →
+            </a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Regular Blog Posts -->
+    {% if posts %}
+    <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-8">Latest Articles</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+      {% for post in posts %}
+      <article class="bg-white rounded-lg border border-[color:var(--color-brand-accent)]/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
+        <a href="{{ post.get_absolute_url }}">
+          {% if post.external_image_url %}
+            <img src="{{ post.external_image_url }}" alt="image for {{ post.title }}" class="w-full h-48 object-cover">
+          {% elif post.get_image_url %}
+            <img src="{{ post.get_image_url }}" alt="image for {{ post.title }}" class="w-full h-48 object-cover">
+          {% elif post.youtube_url %}
+            <img src="https://img.youtube.com/vi/{{ post.get_youtube_video_id }}/maxresdefault.jpg"
+                 alt="{{ post.title }}"
+                 class="w-full h-48 object-cover"
+                 onerror="this.onerror=null; this.src='https://img.youtube.com/vi/{{ post.get_youtube_video_id }}/hqdefault.jpg';">
+          {% endif %}
+        </a>
+        <div class="p-6 flex flex-col flex-grow">
+          <h2 class="text-lg font-bold text-[color:var(--color-brand-dark)] mb-2">{{ post.title }}</h2>
+          <p class="text-[color:var(--color-font-main)]/80 mb-4 flex-grow">
+            {{ post.content|striptags|truncatewords:25 }}
+          </p>
+          <a href="{{ post.get_absolute_url }}"
+             class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">
+            Keep Reading →
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if posts.has_other_pages %}
+    <div class="flex justify-center items-center gap-2 mt-12 flex-wrap">
+      {% if posts.has_previous %}
+      <a href="?page={{ posts.previous_page_number }}"
+         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+        Previous
+      </a>
+      {% endif %}
+
+      {% for i in posts.paginator.page_range %}
+        {% if posts.number == i %}
+          <span class="px-4 py-2 bg-[color:var(--color-brand-primary)] text-white border border-[color:var(--color-brand-primary)] rounded">{{ i }}</span>
+        {% else %}
+          <a href="?page={{ i }}" class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">{{ i }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}"
+         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+        Next
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="text-center py-16 bg-white rounded-lg">
+      <h2 class="text-2xl font-bold text-[color:var(--color-brand-dark)] mb-4">No Articles Found</h2>
+      <p class="text-[color:var(--color-font-main)]/60">Check back soon for new content!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Category Filter Script -->
+<script src="{% static 'js/category-filter.js' %}"></script>
+{% endblock %}

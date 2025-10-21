@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- JSON-LD Schema for News Post -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ post.title|escapejs }}",
+  "description": "{{ post.meta_description|default:post.content|striptags|truncatechars:160|escapejs }}",
+
+  {% comment %} Image logic based on available fields {% endcomment %}
+  "image": "{% if post.get_image_url %}{{ request.scheme }}://{{ request.get_host }}{{ post.get_image_url }}{% elif post.get_youtube_thumbnail %}{{ post.get_youtube_thumbnail }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/ig-header-logo.jpg' %}{% endif %}",
+
+  "author": {
+  "@type": "Person",
+  "name": "Zestizm",
+  "url": "/create-mini-ecommerce/"
+},
+  "publisher": {
+    "@type": "Organization",
+    "name": "Inspirational Guidance",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/ig-header-logo.jpg' %}"
+    }
+  },
+  "datePublished": "{% if post.publish_date %}{{ post.publish_date|date:'c' }}{% else %}{{ post.created|date:'c' }}{% endif %}",
+  "dateModified": "{{ post.updated|date:'c' }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.build_absolute_uri }}"
+  }
+}
+</script>
+<section class="newsformat">
+
+  {% include 'news/components/breadcrumb.html' %}
+
+  <div class="border border-[color:var(--color-brand-accent)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Article image with lighthouse compatibility -->
+    <section class="mb-4">
+      {% if post.youtube_url %}
+        <div class="hero-video-wrapper mb-8">
+          <iframe 
+            src="{{ post.get_youtube_embed_url }}" 
+            allowfullscreen
+            class="w-full h-full rounded-lg border-0"
+            title="{{ post.title }} video"
+            loading="lazy">
+          </iframe>
+        </div>
+      {% elif post.external_image_url %}
+        <div class="hero-media mb-8">
+          <img 
+            src="{{ post.external_image_url }}"
+            srcset="{{ post.external_image_url }} 400w,
+                    {{ post.external_image_url }} 800w,
+                    {{ post.external_image_url }} 1200w"
+            sizes="(max-width: 640px) 400px,
+                  (max-width: 1024px) 800px,
+                  1200px"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            alt="Image for {{ post.title }}"
+            class="hero-image rounded-lg shadow-md">
+        </div>
+      {% elif post.image %}
+        <div class="hero-media mb-8">
+          <img 
+            src="{{ post.image.url }}"
+            srcset="{{ post.image.url }} 400w,
+                    {{ post.image.url }} 800w,
+                    {{ post.image.url }} 1200w"
+            sizes="(max-width: 640px) 400px,
+                  (max-width: 1024px) 800px,
+                  1200px"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            alt="Image for {{ post.title }}"
+            class="hero-image rounded-lg shadow-md">
+        </div>
+      {% endif %}
+   
+
+    <!-- Article title -->
+      <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-brand-dark)] leading-tight mb-3">
+        {{ post.title }}
+      </h1>
+      <p class="text-sm text-[color:var(--color-font-main)]/70">
+        {{ post.publish_date|date:"F j, Y" }} ·
+        <a href="{{ post.category.get_absolute_url }}" class="text-[color:var(--color-brand-accent)] hover:underline">
+          {{ post.category.name }}
+        </a>
+      </p>
+    </section>
+
+    <!-- Short intro -->
+    {% if post.introduction %}
+    <div class="prose prose-lg max-w-none mb-8 text-[color:var(--color-font-main)] leading-relaxed">
+      {{ post.introduction|safe }}
+    </div>
+    {% endif %}
+
+    <!-- Main content -->
+    <article class="prose prose-lg max-w-none text-[color:var(--color-font-main)] leading-relaxed space-y-6">
+      {{ post.content|safe }}
+    </article>
+
+    <!-- Resource block -->
+    {% if post.resource_type != 'none' and post.resource %}
+    <div class="mt-12 p-6 border border-[color:var(--color-brand-accent)]/30 bg-white rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-3 text-[color:var(--color-brand-dark)]">Download Resource</h3>
+      <p class="text-[color:var(--color-font-main)] mb-4">{{ post.resource_title|default:post.title }}</p>
+      <a href="{{ post.resource.url }}"
+         class="inline-flex items-center gap-2 px-5 py-3 border border-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-secondary)] rounded-lg hover:bg-[color:var(--color-brand-secondary)] hover:text-white font-medium transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Download {{ post.get_resource_type_display }}
+      </a>
+    </div>
+    {% endif %}
+
+    <!-- Related & extras -->
+    <div class="mt-16 space-y-12">
+      {% include "news/components/extras.html" %}
+      {% include "news/components/newsads.html" %}
+    </div>
+    <div class="mb-6">
+            <p class="text-sm  mb-2">Thanks, for sharing:</p>
+            {% include 'base/social_share.html' %}
+        </div>
+  </div>
+</section>
+
+{% endblock %}

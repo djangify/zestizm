@@ -1,0 +1,86 @@
+{% load widget_tweaks %}
+<!-- Reviews Section starts -->
+<div class="mt-16 bg-slate-50 border border-teal-700 p-6 shop-reviews">
+    <div class="border-b pb-4 mb-4">
+        <h3 class="text-2xl mb-2">Customer Reviews</h3>
+        <p class="text-sm font-semibold text-gray-500 mb-4">
+            Only verified buyers can leave a review. Your feedback helps others decide!
+        </p>
+        <div class="flex items-center gap-5">
+            <div class="flex items-center">
+                <span class="text-2xl mr-2">{{ product.average_rating|floatformat:1 }}</span>
+                <div class="star-rating">
+                    {% for i in "12345"|make_list %}
+                        <span class="star {% if forloop.counter <= product.average_rating %}filled{% endif %}">★</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <span class="text-gray-600">Based on {{ product.total_reviews }} reviews</span>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        {% if form %}
+            <form method="post" action="{% url 'shop:add_review' product.id %}" class="mb-8">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Rating</label>
+                    <div class="star-rating">
+                        {% for value in "54321"|make_list %}
+                            <input type="radio" name="rating" id="rating{{ value }}" value="{{ value }}">
+                            <label for="rating{{ value }}" class="star">★</label>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Comment</label>
+                    {{ form.comment|add_class:"review-textarea" }}
+                </div>
+
+                <button type="submit" class="btn-green">
+                    Submit Review
+                </button>
+            </form>
+        {% else %}
+            <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                <p>You've already reviewed this product or need to purchase it first to leave a review.</p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+            <p>Please <a href="{% url 'accounts:login' %}?next={{ request.path }}" 
+                    class="text-blue-600 hover:underline">log in</a> to write a review.</p>
+        </div>
+    {% endif %}
+
+    <div class="space-y-4">
+        {% for review in product.reviews.all %}
+            <div class="border-b last:border-0 pb-4">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <div class="star-rating">
+                            {% for i in "12345"|make_list %}
+                                <span class="star {% if forloop.counter <= review.rating %}filled{% endif %}">★</span>
+                            {% endfor %}
+                        </div>
+                        <span class="text-sm text-gray-600 block mt-1">by {{ review.user.first_name }}</span>
+                    </div>
+                    <div class="text-sm text-gray-500">{{ review.created|timesince }} ago</div>
+                </div>
+                <p class="text-gray-700">{{ review.comment }}</p>
+                {% if review.verified_purchase %}
+                    <span class="inline-flex items-center mt-2 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        Verified Purchase
+                    </span>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="text-center py-6 text-gray-500">
+                <p>No reviews yet. Be the first to review this product!</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- Reviews section ends-->

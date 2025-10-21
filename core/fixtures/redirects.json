@@ -1,0 +1,498 @@
+[
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/project-5-readme/",
+      "new_path": "https://todiane.com/project-5-readme/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/new-flask-website/",
+      "new_path": "https://todiane.com/new-flask-website/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/django-nightmare/",
+      "new_path": "https://todiane.com/django-nightmare/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/learning-flask-and-django/",
+      "new_path": "https://todiane.com/learning-flask-and-django/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/amazing-django-course/",
+      "new_path": "https://todiane.com/amazing-django-course/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/resume-project-updated/",
+      "new_path": "https://todiane.com/resume-project-updated/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/datacamp-sql-training/",
+      "new_path": "https://todiane.com/datacamp-sql-training/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/project-3-complete/",
+      "new_path": "https://todiane.com/project-3-complete/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/using-bootstrap/",
+      "new_path": "https://todiane.com/using-bootstrap/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/a-passing-disappointment/",
+      "new_path": "https://todiane.com/a-passing-disappointment/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/a-working-job-title/",
+      "new_path": "https://todiane.com/a-working-job-title/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/python-project-planning/",
+      "new_path": "https://todiane.com/python-project-planning/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/github-readme-page/",
+      "new_path": "https://todiane.com/github-readme-page/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/the-cycle-of-life-project-2-submitted/",
+      "new_path": "https://todiane.com/the-cycle-of-life-project-2-submitted/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/july-hackathon-complete/",
+      "new_path": "https://todiane.com/july-hackathon-complete/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/freecodecamp-fastapi-handbook/",
+      "new_path": "https://todiane.com/freecodecamp-fastapi-handbook/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/june-2023-hackathon-second-place/",
+      "new_path": "https://todiane.com/june-2023-hackathon-second-place/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/rubber-duck-method/",
+      "new_path": "https://todiane.com/rubber-duck-method/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/self-study-traps-to-avoid/",
+      "new_path": "https://todiane.com/self-study-traps-to-avoid/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/todianedev/",
+      "new_path": "https://todiane.com/todianedev/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/my-ideal-clients-reality-to-fantasy/",
+      "new_path": "https://todiane.com/my-ideal-clients-reality-to-fantasy/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/my-belbin-framework/",
+      "new_path": "https://todiane.com/my-belbin-framework/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/my-working-timeline/",
+      "new_path": "https://todiane.com/my-working-timeline/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/from-little-fish-to-digital-marketing/",
+      "new_path": "https://todiane.com/from-little-fish-to-digital-marketing/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/claude-3-5-crash-course/",
+      "new_path": "https://todiane.com/claude-3-5-crash-course/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/anvil-apps/",
+      "new_path": "https://todiane.com/anvil-apps/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/flask-fastapi-or-django/",
+      "new_path": "https://todiane.com/flask-fastapi-or-django/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/python-foundational-concepts/",
+      "new_path": "https://todiane.com/python-foundational-concepts/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/break-over/",
+      "new_path": "https://todiane.com/break-over/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/wagtail-multi-site/",
+      "new_path": "https://todiane.com/wagtail-multi-site/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/making-wagtail-progress/",
+      "new_path": "https://todiane.com/making-wagtail-progress/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/djangonaut-space/",
+      "new_path": "https://todiane.com/djangonaut-space/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/ai-fundamentals/",
+      "new_path": "https://todiane.com/ai-fundamentals/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/ai-learning-plan/",
+      "new_path": "https://todiane.com/ai-learning-plan/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/my-tech-stack/",
+      "new_path": "https://todiane.com/my-tech-stack/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/programming-tips/",
+      "new_path": "https://todiane.com/programming-tips/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/full-stack-certificate/",
+      "new_path": "https://todiane.com/full-stack-certificate/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/our-spot-update/",
+      "new_path": "https://todiane.com/our-spot-update/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/ai-abbreviations/",
+      "new_path": "https://todiane.com/ai-abbreviations/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/chatbot-development/",
+      "new_path": "https://todiane.com/chatbot-development/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/learn-ai-challenge/",
+      "new_path": "https://todiane.com/learn-ai-challenge/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/learning-wagtail-cms/",
+      "new_path": "https://todiane.com/learning-wagtail-cms/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/full-stack-software-developer/",
+      "new_path": "https://todiane.com/full-stack-software-developer/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/svm-mode-in-bios-visualisation/",
+      "new_path": "https://todiane.com/svm-mode-in-bios-visualisation/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/python-projects-to-build/",
+      "new_path": "https://todiane.com/python-projects-to-build/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/ai-chatbot-developer/",
+      "new_path": "https://todiane.com/ai-chatbot-developer/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/infj-t/",
+      "new_path": "https://todiane.com/infj-t/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/learning-bootstrap-5/",
+      "new_path": "https://todiane.com/learning-bootstrap-5/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/behind-the-frontend-my-tailwind-v4-and-template-setup/",
+      "new_path": "https://todiane.com/behind-the-frontend-my-tailwind-v4-and-template-setup/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/behind-the-build-my-django-backend-setup/",
+      "new_path": "https://todiane.com/behind-the-build-my-django-backend-setup/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/what-im-learning-from-astro-to-ai-tools/",
+      "new_path": "https://todiane.com/what-im-learning-from-astro-to-ai-tools/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/corrison-api/",
+      "new_path": "https://todiane.com/corrison-api/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/what-i-learned-setting-up-vps-hosting-with-hetzner-and-hestiacp/",
+      "new_path": "https://todiane.com/what-i-learned-setting-up-vps-hosting-with-hetzner-and-hestiacp/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/managing-your-digital-stack/",
+      "new_path": "https://todiane.com/managing-your-digital-stack/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/my-vibe-coding-profile/",
+      "new_path": "https://todiane.com/my-vibe-coding-profile/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/vibe-coding-and-software-for-one/",
+      "new_path": "https://todiane.com/vibe-coding-and-software-for-one/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/django-project-structure/",
+      "new_path": "https://todiane.com/django-project-structure/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/migrating-from-wordpress-to-django/",
+      "new_path": "https://todiane.com/migrating-from-wordpress-to-django/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/stream-english-educommerce/",
+      "new_path": "https://todiane.com/stream-english-educommerce/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/my-experience-with-mvps-and-technical-documentation/",
+      "new_path": "https://todiane.com/my-experience-with-mvps-and-technical-documentation/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/updated-tech-stack/",
+      "new_path": "https://todiane.com/updated-tech-stack/"
+    }
+  },
+  {
+    "model": "redirects.redirect",
+    "fields": {
+      "site": 1,
+      "old_path": "/note-taking-app-with-v0-dev/",
+      "new_path": "https://todiane.com/note-taking-app-with-v0-dev/"
+    }
+  }
+]

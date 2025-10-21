@@ -1,0 +1,97 @@
+{% load static %}
+
+<!-- Free Download / Product CTA -->
+<section 
+  id="download-cta" 
+  class="mt-16 mb-12 px-4 sm:px-6 lg:px-8"
+  role="region"
+  aria-labelledby="download-cta-title"
+>
+  <div class="max-w-6xl mx-auto">
+    <div 
+      class="grid grid-cols-1 md:grid-cols-3 items-center gap-10 lg:gap-12
+             bg-[color:var(--color-brand-light)] 
+             border border-[color:var(--color-brand-accent)] 
+             rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm"
+    >
+
+      <!-- Title spans full width -->
+      <div class="md:col-span-3 text-center">
+        <h2 
+          id="download-cta-title" 
+          class="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight 
+                 text-[color:var(--color-brand-primary)]"
+        >
+          {{ homepage_settings.cta_title }}
+        </h2>
+      </div>
+
+      <!-- Text Section -->
+      <div class="md:col-span-2 space-y-4 max-w-2xl mx-auto md:mx-0 text-center md:text-left">
+        {% if homepage_settings.cta_text %}
+          <div class="prose text-[color:var(--color-font-main)] leading-relaxed">
+            {{ homepage_settings.cta_text|safe }}
+          </div>
+        {% endif %}
+
+        <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4" role="group" aria-label="Download and navigation links">
+          {% if homepage_settings.cta_pdf_upload %}
+            <a 
+              href="{{ homepage_settings.cta_pdf_upload.url }}"
+              class="inline-flex items-center uppercase border-2 border-[color:var(--color-brand-primary)] 
+                     bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] 
+                     text-sm sm:text-base px-6 py-3 rounded font-semibold 
+                     hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] 
+                     transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+              aria-label="Download the free {{ homepage_settings.cta_title }}"
+              download
+            >
+              {{ homepage_settings.cta_button_text }}
+            </a>
+          {% elif homepage_settings.cta_button_link %}
+            <a 
+              href="{{ homepage_settings.cta_button_link }}"
+              class="inline-flex items-center uppercase border-2 border-[color:var(--color-brand-primary)] 
+                     bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] 
+                     text-sm sm:text-base px-6 py-3 rounded font-semibold 
+                     hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] 
+                     transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+              aria-label="Access the {{ homepage_settings.cta_title }}"
+            >
+              {{ homepage_settings.cta_button_text }}
+            </a>
+          {% endif %}
+
+          {% if homepage_settings.cta_secondary_link %}
+            <a 
+              href="{{ homepage_settings.cta_secondary_link }}"
+              class="inline-flex items-center uppercase border border-[color:var(--color-brand-accent)] 
+                     text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] 
+                     text-sm sm:text-base px-6 py-3 rounded font-medium 
+                     hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] 
+                     transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+              aria-label="Explore more products in our shop"
+            >
+              {{ homepage_settings.cta_secondary_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Image Preview -->
+      {% if homepage_settings.cta_image %}
+      <div class="flex justify-center lg:justify-end mt-8 lg:mt-0">
+        <figure 
+          class="w-56 sm:w-60 md:w-64 lg:w-60 aspect-[3/4] flex items-center justify-center overflow-hidden rounded-md"
+        >
+          <img
+            src="{{ homepage_settings.cta_image.url }}"
+            alt="Preview of {{ homepage_settings.cta_title }}"
+            class="object-contain w-full h-full" width="600" height="800" loading="lazy"
+          />
+        </figure>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

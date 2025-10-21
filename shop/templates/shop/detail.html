@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block open_graph_tags %}
+  <meta property="og:title" content="{{ product.meta_title|default:product.title }}" />
+  {% if product.meta_description %}
+    <meta property="og:description" content="{{ product.meta_description|truncatewords:25 }}" />
+  {% else %}
+    <meta property="og:description" content="{{ product.description|truncatewords:25 }}" />
+  {% endif %}
+  <meta property="og:image" content="{{ product.get_image_url|default:'/static/images/placeholder.webp' }}" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:type" content="product" />
+
+  <!-- Twitter (X) Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ product.meta_title|default:product.title }}" />
+  {% if product.meta_description %}
+    <meta name="twitter:description" content="{{ product.meta_description|truncatewords:25 }}" />
+  {% else %}
+    <meta name="twitter:description" content="{{ product.description|truncatewords:25 }}" />
+  {% endif %}
+  <meta name="twitter:image" content="{{ product.get_image_url|default:'/static/images/djangify-logo.png' }}" />
+{% endblock %}
+
+{% block extra_head %}
+
+{% endblock %}
+<!-- JSON-LD Schema for Shop Product -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ product.title|escapejs }}",
+  "description": "{{ product.section_description|default:product.description|striptags|truncatechars:160|escapejs }}",
+  "image": [
+    {% if product.get_image_url %}
+      "{{ request.scheme }}://{{ request.get_host }}{{ product.get_image_url }}"
+    {% else %}
+      "{{ request.scheme }}://{{ request.get_host }}{% static 'images/bookgirl.png' %}"
+    {% endif %}
+  ],
+  "sku": "{{ product.public_id|default:product.slug }}",
+  "category": "{{ product.category.name }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Djangify eCommerce"
+  },
+  {% if product.average_rating %}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ product.average_rating|floatformat:1 }}",
+    "reviewCount": "{{ product.total_reviews }}"
+  },
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ request.build_absolute_uri }}",
+    "priceCurrency": "GBP",
+    "price": "{{ product.current_price }}",
+    "availability": "https://schema.org/{% if product.is_active and not product.is_coming_soon and not product.is_fully_booked %}InStock{% else %}OutOfStock{% endif %}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0.00",
+        "currency": "GBP"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "GB"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "GB",
+      "returnPolicyCategory": "https://schema.org/NoReturnsAccepted",
+      "name": "Digital download – no physical shipping"
+    }
+  },
+  "isAccessoryOrSparePartFor": {
+    "@type": "ProductGroup",
+    "productGroupID": "digital-downloads",
+    "name": "Digital Downloads"
+  }
+}
+</script>
+{% block content %}
+<div class="min-h-screen mt-16">
+  <div class="container mx-auto px-4 py-12">
+    {% include 'components/breadcrumb.html' %}
+
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-start lg:gap-12">
+      <!-- LEFT COLUMN -->
+      <div class="w-full lg:w-5/12 px-4 space-y-6">
+        <!-- Main Product Image -->
+        <div class="relative border border-[color:var(--color-brand-light)] overflow-hidden rounded-lg">
+          <img
+            id="main-product-image"
+            src="{{ product.get_image_url|default:'/static/images/placeholder.webp' }}"
+            alt="product detail for {{ product.title }}"
+            class="block w-full h-full object-contain  transition duration-300" width="600" height="800" loading="lazy"
+          />
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex mt-4 gap-4 justify-center">
+          <img
+            src="{{ product.get_image_url|default:'/static/images/placeholder.webp' }}"
+            data-src="{{ product.get_image_url|default:'/static/images/placeholder.webp' }}"
+            alt="product title for {{ product.title }}"
+            class="w-20 h-20 object-cover border-2 border-[color:var(--color-brand-primary)] rounded hover:shadow-md cursor-pointer product-thumbnail active-thumbnail"
+          />
+          {% for img in product.images.all %}
+          <img
+            src="{{ img.image.url }}"
+            data-src="{{ img.image.url }}"
+            alt="{{ img.alt_text|default:'Additional product image' }}"
+            class="w-20 h-20 object-cover border border-[color:var(--color-brand-accent)] rounded hover:shadow-md cursor-pointer product-thumbnail"
+          />
+          {% endfor %}
+        </div>
+
+        <!-- Quantity + Add to Cart (side-by-side) -->
+        <div class="pt-6 space-y-6">
+          {% if product.status == "publish" %}
+          <form method="post" action="{% url 'shop:cart_add' product.id %}" class="flex items-center justify-between gap-4">
+            {% csrf_token %}
+            <div class="flex items-center gap-3">
+              <label class="text-sm font-medium text-[color:var(--color-font-main)]">Qty:</label>
+              <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                max="10"
+                class="w-16 px-3 py-2 border border-[color:var(--color-brand-accent)] rounded text-center"
+              />
+            </div>
+            <button
+              type="submit"
+              class="flex-1 bg-[color:var(--color-brand-primary)] hover:bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] font-bold py-3 px-6 rounded-xl transition duration-300 hover:scale-105 shadow-md">
+              Add to Cart
+            </button>
+          </form>
+          {% else %}
+          <div class="text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] border border-[color:var(--color-brand-accent)] p-4 rounded">
+            This product is <strong>{{ product.get_status_display }}</strong>.
+          </div>
+          {% endif %}
+
+          <!-- Wishlist Only -->
+          <button
+            class="favourite-btn bg-[color:var(--color-brand-secondary)] w-full text-[color:var(--color-brand-dark)] py-3 rounded-xl shadow-md font-semibold hover:bg-[color:var(--color-brand-primary)] transition"
+            data-product-slug="{{ product.slug }}"
+            data-action-url="{% url 'accounts:add_to_wishlist' product.slug %}"
+            data-csrf="{{ csrf_token }}">
+            {% if product in user.profile.favourite_products.all %}
+              ❤️ Remove from Wish List
+            {% else %}
+              🤍 Add To Wish List
+            {% endif %}
+          </button>
+
+          <!-- Secure Purchase Info (horizontal 3-column row) -->
+          <div class="mt-8 border-t border-[color:var(--color-brand-accent)] pt-6">
+            <div class="grid grid-cols-3 text-sm text-[color:var(--color-font-main)] text-center">
+              <div class="flex items-center justify-center gap-2">
+                <span class="text-[color:var(--color-brand-secondary)]">✔</span>
+                <span>Secure Payment</span>
+              </div>
+              <div class="flex items-center justify-center gap-2">
+                <span class="text-[color:var(--color-brand-secondary)]">✔</span>
+                <span>Easy Downloads</span>
+              </div>
+              <div class="flex items-center justify-center gap-2">
+                <span class="text-[color:var(--color-brand-secondary)]">✔</span>
+                <span>Register for Updates</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Download Preview -->
+          {% if product.get_preview_url %}
+          <div class="mt-10 p-6 rounded-lg border border-[color:var(--color-brand-accent)]/30">
+            <h3 class="text-lg font-semibold mb-3 flex items-center text-[color:var(--color-font-main)]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-[color:var(--color-brand-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              Download Preview
+            </h3>
+            <a href="{{ product.get_preview_url }}" download
+               class="inline-flex items-center justify-center gap-2 px-5 py-3 w-full border border-[color:var(--color-brand-accent)] rounded-md text-[color:var(--color-font-main)] hover:bg-[color:var(--color-brand-light)] transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[color:var(--color-brand-secondary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download Product Preview
+            </a>
+          </div>
+          {% endif %}
+
+          <!-- Disclaimer -->
+          <div class="mt-8 border-t border-[color:var(--color-brand-accent)] pt-6 text-xs leading-relaxed text-[color:var(--color-font-main)]">
+            <strong>Disclaimer:</strong> We aim to keep all resources up to date and accurate.  
+            Digital downloads are non-refundable once downloaded.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="flex-1 space-y-6">
+        <div>
+          <h1 class="text-3xl lg:text-4xl font-bold text-[color:var(--color-brand-dark)] mb-4">
+            {{ product.title }}
+          </h1>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <span class="text-4xl font-bold text-[color:var(--color-brand-primary)]">£{{ product.current_price }}</span>
+          {% if product.is_on_sale %}
+          <span class="text-2xl text-[color:var(--color-brand-accent)] line-through ml-3">£{{ product.price }}</span>
+          {% endif %}
+        </div>
+
+        <div class="flex items-center gap-1 mt-1">
+          <div class="flex">
+            {% for i in "12345"|make_list %}
+              {% if forloop.counter <= product.average_rating %}
+                <svg class="w-5 h-5 text-[color:var(--color-brand-secondary)] fill-[color:var(--color-brand-secondary)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782L19.868 24 12 19.896 4.132 24l2.934-9.008L1.132 9.21l8.2-1.192z"/></svg>
+              {% else %}
+                <svg class="w-5 h-5 text-[color:var(--color-brand-accent)]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782L19.868 24 12 19.896 4.132 24l2.934-9.008L1.132 9.21l8.2-1.192z"/></svg>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <span class="ml-2 text-sm text-[color:var(--color-font-main)]">
+            ({{ product.total_reviews }} review{{ product.total_reviews|pluralize }})
+          </span>
+        </div>
+
+        <div class="prose">
+          {{ product.description|safe }}
+        </div>
+
+        <!-- Accordion -->
+        <div class="mt-6 border-t border-[color:var(--color-brand-accent)] pt-6">
+          <div class="accordion-header flex items-center justify-between cursor-pointer" data-target="product-long-description">
+            <h3 class="text-lg font-semibold text-[color:var(--color-brand-primary)]">More Product Info Here</h3>
+            <svg class="w-5 h-5 transition-transform accordion-icon text-[color:var(--color-brand-accent)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+          </div>
+          <div id="product-long-description" class="prose hidden">
+            {{ product.long_description|safe }}
+
+            <!-- Second Buy Now / Quantity Button -->
+            {% if product.status == "publish" %}
+            <form method="post" action="{% url 'shop:cart_add' product.id %}" class="flex items-center justify-start gap-4 mt-6">
+              {% csrf_token %}
+              <div class="flex items-center gap-2">
+                <label class="text-sm font-medium text-[color:var(--color-font-main)]">Qty:</label>
+                <input type="number" name="quantity" value="1" min="1" max="10"
+                       class="w-16 px-3 py-2 border border-[color:var(--color-brand-accent)] rounded text-center">
+              </div>
+              <button type="submit"
+                      class="bg-[color:var(--color-brand-primary)] hover:bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] font-bold py-3 px-6 rounded-xl transition duration-300 hover:scale-105 shadow-md">
+                Buy Now
+              </button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</script>
+
+<!-- Accordion Script -->
+<script>
+document.querySelectorAll(".accordion-header").forEach(header => {
+  header.addEventListener("click", () => {
+    const target = document.getElementById(header.dataset.target);
+    const icon = header.querySelector(".accordion-icon");
+    target.classList.toggle("hidden");
+    icon.classList.toggle("rotate-180");
+  });
+});
+</script>
+
+<script src="{% static 'js/favourite-products.js' %}"></script>
+
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% if messages %}
+<div id="messages-container"
+     class="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md"
+     role="region"
+     aria-label="Site Notifications">
+
+  {% for message in messages %}
+  <div
+       class="alert rounded-md shadow-sm mb-3 px-4 py-3 text-sm font-medium flex items-start gap-2 fade-transition
+              {% if message.tags == 'success' %}alert-success
+              {% elif message.tags == 'error' %}alert-error
+              {% else %}alert-info{% endif %}"
+       role="alert"
+       aria-live="assertive"
+       aria-atomic="true">
+
+    <span class="sr-only">
+      {% if message.tags == 'success' %}Success message{% elif message.tags == 'error' %}Error message{% else %}Notification{% endif %}
+    </span>
+
+    <strong class="font-semibold">
+      {% if message.tags == 'success' %}Success!
+      {% elif message.tags == 'error' %}Error!
+      {% else %}Notice{% endif %}
+    </strong>
+
+    <span class="ml-2">{{ message }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

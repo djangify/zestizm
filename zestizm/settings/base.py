@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "blog",
     "accounts",
     "shop",
+    "infopages",
     "tinymce",
 ]
 
@@ -35,6 +36,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "zestizm.middleware.BlockWPExploitAttemptsMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",

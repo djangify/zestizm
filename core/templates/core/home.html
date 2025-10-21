@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<header>
+  {% include 'core/hero.html' %}
+</header>
+
+<main class="text-[color:var(--color-font-main)] mt-8">
+  <!-- Shop Heading -->
+  <section class="px-6 md:px-16 py-8 text-center space-y-2">
+  <h1 class="text-3xl md:text-4xl font-semibold text-[color:var(--color-font-main)]">
+    Latest Products
+  </h1>
+</section>
+  <!-- Category Pills -->
+  <div id="categories-grid" class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 md:mb-10 uppercase px-4">
+    <a href="{% url 'core:home' %}"
+    class="px-4 py-2 rounded-md text-sm font-semibold border border-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition-colors {% if not current_category %}bg-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] font-bold border-[color:var(--color-brand-accent)]{% endif %}">
+    All Products
+  </a>
+    {% for category in categories %}
+    <a href="?category={{ category.slug }}#latest-products"
+      class="px-4 py-2 rounded-md text-sm font-semibold border border-[color:var(--color-brand-accent)] text-[color:var(--color-brand-dark)] bg-[color:var(--color-brand-light)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition-colors {% if current_category and current_category.slug == category.slug %}bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] border-[color:var(--color-brand-secondary)]{% endif %}">
+      {{ category.name }}
+    </a>
+    {% endfor %}
+  </div>
+  <!-- LATEST PRODUCTS ( 4) -->
+  <section id="latest-products" class="py-6">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      {% if latest_products %}
+      <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+        {% for product in latest_products %}
+        <div class="border border-[color:var(--color-brand-accent)] rounded-lg p-4 hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
+          <a href="{{ product.get_absolute_url }}">
+            <figure class="mb-4 aspect-[3/4] flex items-center justify-center overflow-hidden rounded-md">
+              {% if product.get_image_url %}
+                <img src="{{ product.get_image_url }}" alt=Product - "{{ product.title }}" width="700" height="900" 
+                loading="lazy" decoding="async" class="object-contain w-full h-full">
+              {% else %}
+                <img src="{% static 'images/placeholder.webp' %} alt="" aria-hidden="true class="object-contain w-full h-full">
+              {% endif %}
+            </figure>
+            <h2 class="text-lg font-semibold text-[color:var(--color-font-main)] mb-2">{{ product.title }}</h2>
+          </a>
+          <div class="flex justify-between items-center mt-auto">
+            <span class="text-lg font-semibold text-[color:var(--color-font-main)]">
+              £{{ product.current_price }}
+            </span>
+            <a href="{{ product.get_absolute_url }}"
+              class="text-sm border border-[color:var(--color-brand-secondary-contrast)] bg-[color:var(--color-brand-secondary)] font-semibold text-[color:var(--color-brand-light)] px-3 py-1.5 rounded hover:bg-[color:var(--color-brand-secondary-contrast)] hover:text-[color:var(--color-brand-light)] transition-colors">
+              View Product
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-center text-[color:var(--color-font-main)]">No latest products available at the moment.</p>
+      {% endif %}
+    </div>
+
+    {% include 'core/components/home-featured.html' %}
+
+    {% include 'core/components/download-cta.html' %}
+
+    {% include 'core/components/additional-products.html' %}
+
+    {% include 'core/components/blog-posts.html' %}
+    
+  </section>
+ 
+</main>
+<!-- JS -->
+<script src="{% static 'js/category-filter.js' %}"></script>
+{% endblock %}

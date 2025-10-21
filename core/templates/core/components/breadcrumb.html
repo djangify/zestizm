@@ -1,0 +1,28 @@
+<nav class="w-full px-4 mt-4 mb-4 sm:px-6 lg:px-8 py-3 bg-white" aria-label="Breadcrumb">
+  <ol class="flex flex-wrap items-center justify-center gap-2 text-sm text-[color:var(--color-font-main)]/70">
+
+    <!-- Home link -->
+    <li class="flex items-center">
+      <a href="{% url 'core:policies_index' %}" class="hover:text-[color:var(--color-brand-accent)] font-medium transition">All Policies</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-accent)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </li>
+
+    <!-- Dynamic breadcrumb list -->
+    {% for crumb in breadcrumbs %}
+      <li class="flex items-center">
+        {% if crumb.url %}
+          <a href="{{ crumb.url }}" class="hover:text-[color:var(--color-brand-accent)] font-medium transition">
+            {{ crumb.title }}
+          </a>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-accent)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        {% else %}
+          <span class="text-[color:var(--color-brand-accent)] font-semibold truncate">{{ crumb.title }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</nav>

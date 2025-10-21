@@ -1,0 +1,24 @@
+<!-- templates/error/403.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}403 Forbidden - Djangify{% endblock %}
+
+{% block content %}
+<div class="min-h-[70vh] bg-secondary text-text p-6 flex items-center justify-center md:p-16">
+    <div class="text-center">
+        <h1 class="text-8xl font-bold text-[color:var(--color-brand-accent)] mb-4">403</h1>
+        <h2 class="text-2xl font-bold mb-4">Access Denied</h2>
+        <br>
+        <p class="text-lg mb-8">You don't have permission to access this page.</p>
+        <br>
+        <div class="flex flex-col gap-5 sm:flex-row justify-center items-center">
+            <a href="/" class="inline-flex items-center px-6 py-3 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors">
+                <span>Return Home</span>
+            </a>
+            <br>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

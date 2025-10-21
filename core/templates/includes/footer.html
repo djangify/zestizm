@@ -1,0 +1,84 @@
+{% load static %}
+
+<footer class="bg-[color:var(--color-brand-light)] border-t border-gray-200 mt-16">
+  <div class="max-w-7xl mx-auto px-6 py-12 text-center space-y-6">
+
+    <!-- Navigation Links -->
+    <nav aria-label="Footer navigation">
+      <ul class="flex flex-wrap justify-center gap-6 text-sm text-[color:var(--color-font-main)]">
+        <li>
+          <a href="{% url 'core:home' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'infopages:policy_index' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+            All Policies
+          </a>
+        </li>
+
+        {% if not request.user.is_authenticated %}
+          <li>
+            <a href="{% url 'accounts:register' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+              Register
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:login' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+              Login
+            </a>
+          </li>
+        {% else %}
+          <li>
+            <a href="{% url 'accounts:logout' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+              Logout
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <!-- Footer Bottom Row -->
+    <div class="flex flex-col md:flex-row items-center justify-between mt-8 border-t border-gray-200 pt-6">
+      
+      <!-- Copyright (Left) -->
+      <p class="text-sm text-[color:var(--color-font-main)] mb-4 md:mb-0">
+        {% if homepage_settings.copyright_text %}
+          &copy; 2025 {{ homepage_settings.copyright_text }}
+        {% else %}
+          &copy; 2025 {{ homepage_settings.business_name }}. All rights reserved.
+        {% endif %}
+      </p>
+
+      <!-- Social Media (Right) -->
+      {% if social_links %}
+        <div class="flex items-center space-x-4 my-4" aria-label="Social media">
+          {% for name, url in social_links %}
+            {% with name|lower as social %}
+              <a href="{{ url }}" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center hover:opacity-80 transition-opacity"
+                 aria-label="{{ name }}">
+                {% if "facebook" in social %}
+                  <img src="{% static 'images/social/facebook.png' %}" alt="Facebook" width="25" height="25">
+                {% elif "instagram" in social %}
+                  <img src="{% static 'images/social/instagram.png' %}" alt="Instagram" width="25" height="25">
+                {% elif "linkedin" in social %}
+                  <img src="{% static 'images/social/linkedin.png' %}" alt="LinkedIn" width="25" height="25">
+                {% elif "twitter" in social or "x" in social %}
+                  <img src="{% static 'images/social/x.png' %}" alt="Twitter / X" width="25" height="25">
+                {% elif "pinterest" in social %}
+                  <img src="{% static 'images/social/pinterest.png' %}" alt="Pinterest" width="25" height="25">
+                {% elif "tiktok" in social %}
+                  <img src="{% static 'images/social/tiktok.png' %}" alt="TikTok" width="25" height="25">
+                {% else %}
+                  <img src="{% static 'images/social/link.png' %}" alt="{{ name }}" width="25" height="25">
+                {% endif %}
+              </a>
+            {% endwith %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>

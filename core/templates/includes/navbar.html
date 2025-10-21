@@ -1,0 +1,82 @@
+{% load static %}
+
+<nav class="w-full border-b border-[color:var(--color-brand-accent)] bg-white shadow-sm" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center h-20">
+    
+    <!-- Logo + Business Name -->
+    <a href="{% url 'core:home' %}" class="flex items-center gap-2" aria-label="{{ homepage_settings.business_name|default:'Home' }}">
+      {% if homepage_settings.logo_image %}
+        <img 
+          src="{{ homepage_settings.logo_image.url }}" 
+          alt="{{ homepage_settings.business_name }} logo" 
+          class="h-10 w-auto object-contain"
+          loading="lazy"
+        >
+      {% else %}
+        <img 
+          src="{% static 'images/placeholder-logo.png' %}" 
+          alt="{{ homepage_settings.business_name }}" 
+          class="h-10 w-auto object-contain opacity-70"
+          loading="lazy"
+        >
+      {% endif %}
+      <span class="hidden md:flex text-[color:var(--color-font-main)] font-semibold uppercase tracking-wide">
+        {{ homepage_settings.business_name }}
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex items-center gap-10 text-sm font-medium uppercase">
+      <li>
+        <a href="{% url 'core:home' %}" class="text-[color:var(--color-font-main)] hover:text-[color:var(--color-brand-secondary)] transition">Home</a>
+      </li>
+      <li>
+        <a href="{% url 'core:home' %}#latest-products" class="text-[color:var(--color-font-main)] hover:text-[color:var(--color-brand-secondary)] transition">Shop</a>
+      </li>
+    </ul>
+
+    <!-- Right-Side Buttons -->
+    <div class="flex items-center gap-5">
+      <a href="{% url 'accounts:login' %}"
+         class="uppercase border bg-[color:var(--color-brand-accent)] border-[color:var(--color-brand-accent)] text-[color:var(--color-font-main)] text-xs sm:text-sm px-5 py-2 rounded font-bold hover:bg-[color:var(--color-brand-secondary)] hover:border-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition">
+        Login
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="menu-toggle"
+        class="md:hidden flex flex-col justify-between w-8 h-6 focus:outline-none"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="block h-0.5 w-full bg-[color:var(--color-font-main)] rounded"></span>
+        <span class="block h-0.5 w-full bg-[color:var(--color-font-main)] rounded"></span>
+        <span class="block h-0.5 w-full bg-[color:var(--color-font-main)] rounded"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div id="mobile-menu" class="hidden flex-col items-center bg-[color:var(--color-brand-light)] border-t border-[color:var(--color-brand-accent)] py-4 space-y-4 md:hidden">
+    <a href="{% url 'core:home' %}" class="block w-full text-center py-2 text-lg text-[color:var(--color-font-main)] hover:text-[color:var(--color-brand-primary)] transition">Home</a>
+    <a href="{% url 'core:home' %}#latest-products" class="block w-full text-center py-2 text-lg text-[color:var(--color-font-main)] hover:text-[color:var(--color-brand-primary)] transition">Shop</a>
+    
+  </div>
+
+  <!-- Mobile Toggle Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+          const expanded = toggle.getAttribute("aria-expanded") === "true";
+          toggle.setAttribute("aria-expanded", !expanded);
+        });
+      }
+    });
+  </script>
+</nav>
