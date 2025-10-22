@@ -3,24 +3,24 @@
 <header class="w-full bg-white border-b border-[color:var(--color-brand-accent)]/30">
   <nav class="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
 
-    <!-- Logo + Name -->
-    <a href="/" class="flex items-center gap-2" aria-label="{{ homepage_settings.business_name|default:'Home' }}">
-      {% if homepage_settings.logo_image %}
-        <img src="{{ homepage_settings.logo_image.url }}"
-             alt="{{ homepage_settings.business_name }} logo"
-             class="h-8 w-auto object-contain"
-             loading="lazy">
-      {% else %}
-        <img src="{% static 'images/placeholder-logo.png' %}"
-             alt="{{ homepage_settings.business_name }}"
-             class="h-8 w-auto object-contain opacity-70"
-             loading="lazy">
-      {% endif %}
-      <span class=" sm:flex text-[color:var(--color-font-main)] font-semibold uppercase tracking-wide">
+    <!-- Logo + Business Name -->
+  <a href="{% url 'core:home' %}" class="flex items-center gap-2" aria-label="{{ homepage_settings.business_name|default:'Home' }}">
+    {% if homepage_settings.logo_image and homepage_settings.logo_image.url %}
+      <img
+        src="{{ homepage_settings.logo_image.url }}"
+        alt="{{ homepage_settings.business_name }} logo"
+        class="h-10 w-auto object-contain"
+        loading="lazy"
+      >
+      <span class="hidden md:flex text-[color:var(--color-font-main)] font-semibold uppercase tracking-wide">
         {{ homepage_settings.business_name }}
       </span>
-    </a>
-
+    {% else %}
+      <span class="text-lg font-bold text-[color:var(--color-font-main)] uppercase tracking-wide">
+        {{ homepage_settings.business_name }}
+      </span>
+    {% endif %}
+  </a>
     <!-- Right Side -->
     <div class="flex items-center gap-4">
 

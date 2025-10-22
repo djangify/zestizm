@@ -48,6 +48,8 @@ class HomePageSettings(models.Model):
     hero_title = models.CharField(
         "Hero Title",
         max_length=150,
+        blank=True,
+        null=True,
         default="Your Main Title",
         help_text="Main heading text displayed in the hero section.",
     )
@@ -99,7 +101,9 @@ class HomePageSettings(models.Model):
         null=True,
         help_text="Upload a small logo image (max display size 128×128px)",
     )
-    about_title = models.CharField(max_length=150, default="Your Title Here")
+    about_title = models.CharField(
+        max_length=150, default="Your Title Here", blank=True, null=True
+    )
     about_text = HTMLField(
         help_text="Text for the About box section – around 70–100 words recommended."
     )
@@ -113,7 +117,10 @@ class HomePageSettings(models.Model):
 
     # --- Download CTA Section ---
     cta_title = models.CharField(
-        max_length=200, default="Free Download: Title For Your Download"
+        max_length=200,
+        default="Free Download: Title For Your Download",
+        blank=True,
+        null=True,
     )
     cta_text = HTMLField(blank=True, null=True, help_text="Intro text for the CTA box.")
     cta_button_text = models.CharField(max_length=100, default="Here Is Your Download")
@@ -142,10 +149,10 @@ class HomePageSettings(models.Model):
 
     # --- Optional / Meta ---
     featured_products_title = models.CharField(
-        max_length=150, default="Featured Products"
+        max_length=150, default="Featured Products", blank=True, null=True
     )
     additional_products_title = models.CharField(
-        max_length=150, default="More to Explore"
+        max_length=150, default="More to Explore", blank=True, null=True
     )
     closing_text = models.TextField(
         "Closing Text (End of Homepage)",

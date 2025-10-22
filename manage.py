@@ -1,8 +1,16 @@
 #!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
-
 import os
 import sys
+from pathlib import Path
+
+# Add this section to load .env file
+import environ
+
+env = environ.Env()
+# Get the base directory
+BASE_DIR = Path(__file__).resolve().parent
+# Read the .env file
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 def main():

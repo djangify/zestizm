@@ -34,12 +34,14 @@
             </figure>
           {% endif %}
 
-          <h2 
-            id="about-title" 
-            class="text-3xl font-semibold text-[color:var(--color-font-main)] mb-4 text-center"
-          >
-            {{ homepage_settings.about_title }}
-          </h2>
+          {% if homepage_settings.about_title %}
+            <h2 
+              id="about-title" 
+              class="text-3xl font-semibold text-[color:var(--color-font-main)] mb-4 text-center"
+            >
+              {{ homepage_settings.about_title }}
+            </h2>
+          {% endif %}
 
           <div class="prose text-[color:var(--color-font-main)] text-base leading-relaxed mb-4">
             {{ homepage_settings.about_text|safe }}
