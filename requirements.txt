@@ -24,6 +24,8 @@ Pillow
 # Utility packages
 requests
 beautifulsoup4
+django-widget-tweaks
+
 
 # Optional rich text / admin tools
 django-ckeditor

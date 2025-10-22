@@ -1,86 +1,88 @@
 {% load widget_tweaks %}
-<!-- Reviews Section starts -->
-<div class="mt-16 bg-slate-50 border border-teal-700 p-6 shop-reviews">
-    <div class="border-b pb-4 mb-4">
-        <h3 class="text-2xl mb-2">Customer Reviews</h3>
-        <p class="text-sm font-semibold text-gray-500 mb-4">
-            Only verified buyers can leave a review. Your feedback helps others decide!
-        </p>
-        <div class="flex items-center gap-5">
-            <div class="flex items-center">
-                <span class="text-2xl mr-2">{{ product.average_rating|floatformat:1 }}</span>
-                <div class="star-rating">
-                    {% for i in "12345"|make_list %}
-                        <span class="star {% if forloop.counter <= product.average_rating %}filled{% endif %}">★</span>
-                    {% endfor %}
-                </div>
-            </div>
-            <span class="text-gray-600">Based on {{ product.total_reviews }} reviews</span>
+<section id="reviews" class="mt-16 border border-[color:var(--color-brand-accent)] rounded-lg p-8 ">
+  <header class="border-b border-[color:var(--color-brand-accent)] pb-4 mb-6">
+    <h3 class="text-2xl font-bold text-[color:var(--color-brand-dark)] mb-2">Customer Reviews</h3>
+    <p class="text-sm text-[color:var(--color-font-main)] mb-4">
+      Only verified buyers can leave a review. Your feedback helps others decide!
+    </p>
+
+    <div class="flex flex-wrap items-center gap-4">
+      <div class="flex items-center">
+        <span class="text-2xl mr-2 font-semibold text-[color:var(--color-brand-primary)]">{{ product.average_rating|floatformat:1 }}</span>
+        <div class="flex text-[color:var(--color-brand-secondary)]">
+          {% for i in "12345"|make_list %}
+            <svg class="w-5 h-5 {% if forloop.counter <= product.average_rating %}fill-[color:var(--color-brand-secondary)]{% else %}fill-[color:var(--color-brand-accent)]{% endif %}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782L19.868 24 12 19.896 4.132 24l2.934-9.008L1.132 9.21l8.2-1.192z"/>
+            </svg>
+          {% endfor %}
         </div>
+      </div>
+      <span class="text-sm text-[color:var(--color-font-main)]">Based on {{ product.total_reviews }} reviews</span>
     </div>
+  </header>
 
-    {% if user.is_authenticated %}
-        {% if form %}
-            <form method="post" action="{% url 'shop:add_review' product.id %}" class="mb-8">
-                {% csrf_token %}
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Rating</label>
-                    <div class="star-rating">
-                        {% for value in "54321"|make_list %}
-                            <input type="radio" name="rating" id="rating{{ value }}" value="{{ value }}">
-                            <label for="rating{{ value }}" class="star">★</label>
-                        {% endfor %}
-                    </div>
+  {% if user.is_authenticated %}
+    {% if form %}
+      <form method="post" action="{% url 'shop:add_review' product.id %}" class="space-y-6">
+        {% csrf_token %}
+        <div>
+          <label class="block text-sm font-medium text-[color:var(--color-font-main)] mb-2">Rating</label>
+          <div class="flex flex-row-reverse justify-end gap-1">
+            {% for value in "54321"|make_list %}
+              <input type="radio" name="rating" id="rating{{ value }}" value="{{ value }}" class="hidden peer" />
+              <label for="rating{{ value }}" class="cursor-pointer text-2xl peer-checked:text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-secondary)]">★</label>
+            {% endfor %}
+          </div>
+        </div>
 
-                </div>
+        <div>
+          <label class="block text-sm font-medium text-[color:var(--color-font-main)] mb-2">Comment</label>
+          {{ form.comment|add_class:"w-full border border-[color:var(--color-brand-accent)] rounded-lg p-3 text-sm text-[color:var(--color-font-main)] focus:ring-2 focus:ring-[color:var(--color-brand-secondary)] focus:outline-none min-h-[120px]" }}
+        </div>
 
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-2">Comment</label>
-                    {{ form.comment|add_class:"review-textarea" }}
-                </div>
-
-                <button type="submit" class="btn-green">
-                    Submit Review
-                </button>
-            </form>
-        {% else %}
-            <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-                <p>You've already reviewed this product or need to purchase it first to leave a review.</p>
-            </div>
-        {% endif %}
+        <button type="submit"
+          class="w-full bg-[color:var(--color-brand-primary)] hover:bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] font-semibold py-3 rounded-lg transition">
+          Submit Review
+        </button>
+      </form>
     {% else %}
-        <div class="mb-6 p-4 bg-gray-50 rounded-lg">
-            <p>Please <a href="{% url 'accounts:login' %}?next={{ request.path }}" 
-                    class="text-blue-600 hover:underline">log in</a> to write a review.</p>
-        </div>
+      <div class="p-4 bg-[color:var(--color-brand-light)]/40 rounded-lg text-[color:var(--color-font-main)]">
+        You've already reviewed this product or need to purchase it first to leave a review.
+      </div>
     {% endif %}
-
-    <div class="space-y-4">
-        {% for review in product.reviews.all %}
-            <div class="border-b last:border-0 pb-4">
-                <div class="flex justify-between items-start mb-2">
-                    <div>
-                        <div class="star-rating">
-                            {% for i in "12345"|make_list %}
-                                <span class="star {% if forloop.counter <= review.rating %}filled{% endif %}">★</span>
-                            {% endfor %}
-                        </div>
-                        <span class="text-sm text-gray-600 block mt-1">by {{ review.user.first_name }}</span>
-                    </div>
-                    <div class="text-sm text-gray-500">{{ review.created|timesince }} ago</div>
-                </div>
-                <p class="text-gray-700">{{ review.comment }}</p>
-                {% if review.verified_purchase %}
-                    <span class="inline-flex items-center mt-2 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        Verified Purchase
-                    </span>
-                {% endif %}
-            </div>
-        {% empty %}
-            <div class="text-center py-6 text-gray-500">
-                <p>No reviews yet. Be the first to review this product!</p>
-            </div>
-        {% endfor %}
+  {% else %}
+    <div class="p-4 bg-[color:var(--color-brand-light)]/40 rounded-lg text-[color:var(--color-font-main)]">
+      Please <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="text-[color:var(--color-brand-secondary)] hover:underline font-medium">log in</a> to write a review.
     </div>
-</div>
-<!-- Reviews section ends-->
+  {% endif %}
+
+  <div class="mt-10 divide-y divide-[color:var(--color-brand-accent)]">
+    {% for review in product.reviews.all %}
+      <article class="py-6">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <div class="flex text-[color:var(--color-brand-secondary)]">
+              {% for i in "12345"|make_list %}
+                <svg class="w-5 h-5 {% if forloop.counter <= review.rating %}fill-[color:var(--color-brand-secondary)]{% else %}fill-[color:var(--color-brand-accent)]{% endif %}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.782L19.868 24 12 19.896 4.132 24l2.934-9.008L1.132 9.21l8.2-1.192z"/>
+                </svg>
+              {% endfor %}
+            </div>
+            <span class="text-sm text-[color:var(--color-font-main)] block mt-1">by {{ review.user.first_name|default:review.user.username }}</span>
+          </div>
+          <div class="text-xs text-[color:var(--color-brand-accent)]">{{ review.created|timesince }} ago</div>
+        </div>
+        <p class="text-[color:var(--color-font-main)] text-sm">{{ review.comment }}</p>
+        {% if review.verified_purchase %}
+          <span class="inline-flex items-center mt-2 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[color:var(--color-brand-secondary)]/20 text-[color:var(--color-brand-dark)]">
+            Verified Purchase
+          </span>
+        {% endif %}
+      </article>
+    {% empty %}
+      <div class="text-center py-6 text-[color:var(--color-font-main)]/70">
+        No reviews yet. Be the first to review this product!
+      </div>
+    {% endfor %}
+  </div>
+</section>

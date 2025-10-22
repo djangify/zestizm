@@ -132,10 +132,10 @@ class HomePageSettings(models.Model):
         help_text="Displayed above the blog posts grid.",
     )
     blog_section_intro = models.TextField(
-        max_length=500,
+        max_length=700,
         blank=True,
         null=True,
-        help_text="Short paragraph introducing the blog section (500 words or less).",
+        help_text="Short paragraph introducing the blog section (700 words or less).",
     )
 
     # --- Optional / Meta ---

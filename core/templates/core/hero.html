@@ -1,17 +1,45 @@
-<div class="relative flex flex-col items-center justify-center text-center py-20 px-6 lg:py-28 max-w-5xl mx-auto z-10">
-  <h1 class="text-4xl lg:text-5xl font-bold uppercase text-[--color-brand-primary-contrast] leading-relaxed mb-6 ">
-    {{ homepage_settings.hero_title|default:"Simple Sustainable Systems for Selling Online" }}
-  </h1>
+{% load static %}
 
-  <p class="text-lg lg:text-xl leading-relaxed font-semibold max-w-3xl text-[--color-brand-light] drop-shadow-sm mb-6">
-    {{ homepage_settings.hero_paragraph|safe }}
-  </p>
+<section 
+  id="hero"
+  class="relative w-full flex items-center justify-center text-center overflow-hidden"
+  role="banner"
+  aria-label="Hero Section"
+>
 
-  {% if homepage_settings.hero_button_text and homepage_settings.hero_button_link %}
-    <a href="{{ homepage_settings.hero_button_link }}"
-       class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] mt-8 px-8 py-3 rounded-lg font-semibold shadow hover:bg-[color:var(--color-brand-secondary)] transition"
-       aria-label="{{ homepage_settings.hero_button_text }}">
-       {{ homepage_settings.hero_button_text }}
-    </a>
+  {% if homepage_settings.hero_image %}
+    <!-- Background Image -->
+    <div 
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('{{ homepage_settings.hero_image.url }}');"
+      aria-hidden="true"
+    ></div>
+    <!-- Light overlay for readability -->
+    <div class="absolute inset-0 bg-[color:var(--color-brand-light)]/50"></div>
+  {% else %}
+    <!-- Default Light Background -->
+    <div class="absolute inset-0 bg-[color:var(--color-brand-light)]" aria-hidden="true"></div>
   {% endif %}
-</div>
+
+  <div class="relative flex flex-col items-center justify-center text-center py-20 px-6 lg:py-28 max-w-5xl mx-auto z-10">
+    <h1 class="text-4xl lg:text-5xl font-bold uppercase leading-relaxed mb-6">
+      {{ homepage_settings.hero_title|default:"Simple Sustainable Systems for Selling Online" }}
+    </h1>
+
+    {% if homepage_settings.hero_paragraph %}
+      <p class="text-lg lg:text-xl leading-relaxed font-medium max-w-3xl text-[color:var(--color-font-main)] mb-6">
+        {{ homepage_settings.hero_paragraph|safe }}
+      </p>
+    {% endif %}
+
+    {% if homepage_settings.hero_button_text and homepage_settings.hero_button_link %}
+      <a 
+        href="{{ homepage_settings.hero_button_link }}"
+        class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] mt-8 px-8 py-3 rounded-lg font-semibold shadow hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition"
+        aria-label="{{ homepage_settings.hero_button_text }}"
+      >
+        {{ homepage_settings.hero_button_text }}
+      </a>
+    {% endif %}
+  </div>
+</section>

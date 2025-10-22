@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "shop",
     "infopages",
     "tinymce",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [

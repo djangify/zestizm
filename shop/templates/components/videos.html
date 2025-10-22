@@ -1,9 +1,9 @@
-<div class="border-t pt-6">
+<div class="border-t border-[color:var(--color-brand-accent)] pt-8 mt-8">
   {% if product.video_file %}
-    <div class="mt-6 flex justify-center">
-      <div class="w-full max-w-4xl aspect-video">
+    <div class="flex justify-center">
+      <div class="w-full max-w-4xl aspect-[16/9] rounded-xl overflow-hidden shadow-md">
         <video
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover rounded-xl"
           controls
           preload="metadata"
         >
@@ -12,17 +12,38 @@
         </video>
       </div>
     </div>
+
   {% elif product.video_url %}
-    <div class="mt-6 flex justify-center">
-      <div class="w-full max-w-4xl aspect-video">
-        <iframe
-          class="w-full h-full "
-          src="{{ product.video_url }}"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+    {% if "watch?v=" in product.video_url %}
+      {% with product.video_url|cut:"watch?v=" as embed_id %}
+        <div class="flex justify-center">
+          <div class="w-full max-w-4xl aspect-[16/9] rounded-xl overflow-hidden shadow-md">
+            <iframe
+              class="w-full h-full rounded-xl"
+              src="https://www.youtube.com/embed/{{ embed_id }}"
+              title="Product video for {{ product.title }}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      {% endwith %}
+    {% else %}
+      <div class="flex justify-center">
+        <div class="w-full max-w-4xl aspect-[16/9] rounded-xl overflow-hidden shadow-md">
+          <iframe
+            class="w-full h-full rounded-xl"
+            src="{{ product.video_url }}"
+            title="Product video for {{ product.title }}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
-    </div>
+    {% endif %}
   {% endif %}
 </div>

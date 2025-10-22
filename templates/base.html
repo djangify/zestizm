@@ -31,11 +31,11 @@
 
   <!-- Stylesheets -->
   <link rel="preload" as="style" href="{% static 'css/output.css' %}">
-  <link rel="preload" as="style" href="{% static 'css/custom.css' %}">
+  {% comment %} <link rel="preload" as="style" href="{% static 'css/custom.css' %}"> {% endcomment %}
   <link rel="stylesheet" href="{% static 'css/output.css' %}" media="all" onload="this.onload=null;this.removeAttribute('media');">
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}" media="print" onload="this.media='all'">
+  {% comment %} <link rel="stylesheet" href="{% static 'css/custom.css' %}" media="print" onload="this.media='all'"> {% endcomment %}
   <noscript><link rel="stylesheet" href="{% static 'css/output.css' %}"></noscript>
-  <noscript><link rel="stylesheet" href="{% static 'css/custom.css' %}"></noscript>
+  {% comment %} <noscript><link rel="stylesheet" href="{% static 'css/custom.css' %}"></noscript> {% endcomment %}
 
     
   <!-- Favicon -->
