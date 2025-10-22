@@ -40,10 +40,11 @@
     </nav>
 
     <!-- Footer Bottom Row -->
+        <!-- Footer Bottom Row -->
     <div class="flex flex-col md:flex-row items-center justify-between mt-8 border-t border-gray-200 pt-6">
-      
+
       <!-- Copyright (Left) -->
-      <p class="text-sm text-[color:var(--color-font-main)] mb-4 md:mb-0">
+      <p class="text-sm text-[color:var(--color-font-main)] mb-4 md:mb-0 order-1 md:order-1">
         {% if homepage_settings.copyright_text %}
           &copy; 2025 {{ homepage_settings.copyright_text }}
         {% else %}
@@ -51,9 +52,9 @@
         {% endif %}
       </p>
 
-      <!-- Social Media (Right) -->
+      <!-- Social Media (Center) -->
       {% if social_links %}
-        <div class="flex items-center space-x-4 my-4" aria-label="Social media">
+        <div class="flex items-center justify-center space-x-4 my-4 order-2 md:order-2 md:flex-1" aria-label="Social media">
           {% for name, url in social_links %}
             {% with name|lower as social %}
               <a href="{{ url }}" target="_blank" rel="noopener noreferrer"
@@ -81,6 +82,16 @@
           {% endfor %}
         </div>
       {% endif %}
+
+      <!-- Developer Credit (Right) -->
+      <p class="text-sm text-[color:var(--color-font-main)] order-3 md:order-3 md:text-right">
+        Developed by: 
+        <a href="https://djangify.com" target="_blank" rel="noopener noreferrer"
+           class="text-[color:var(--color-font-main)] hover:text-[color:var(--color-brand-primary)] transition-colors ">
+          Djangify
+        </a>
+      </p>
+
     </div>
   </div>
 </footer>

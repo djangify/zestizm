@@ -31,15 +31,20 @@
         {{ homepage_settings.hero_paragraph|safe }}
       </p>
     {% endif %}
-
-    {% if homepage_settings.hero_button_text and homepage_settings.hero_button_link %}
-      <a 
-        href="{{ homepage_settings.hero_button_link }}"
-        class="inline-block bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)] mt-8 px-8 py-3 rounded-lg font-semibold shadow hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition"
-        aria-label="{{ homepage_settings.hero_button_text }}"
-      >
-        {{ homepage_settings.hero_button_text }}
-      </a>
-    {% endif %}
+      {% if homepage_settings.hero_button_text and homepage_settings.hero_button_link %}
+        <a 
+          href="{{ homepage_settings.hero_button_link }}"
+          class="inline-block bg-[color:var(--color-brand-primary)] 
+                text-[color:var(--color-brand-light)] 
+                mt-10 px-10 py-5 
+                rounded-md text-lg font-semibold 
+                shadow-md hover:bg-[color:var(--color-brand-secondary)] 
+                hover:text-[color:var(--color-brand-light)] 
+                transition-transform transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-secondary)]"
+          aria-label="{{ homepage_settings.hero_button_text }}"
+        >
+          {{ homepage_settings.hero_button_text }}
+        </a>
+      {% endif %}
   </div>
 </section>
