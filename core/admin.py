@@ -92,12 +92,12 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
                 "fields": (
                     # "featured_products_title",  # Removed for Zestizm site (always single About box)
                     "additional_products_title",
-                    "homepage_intro",
+                    "closing_text",
                     "announcement_bar_text",
                     "seo_meta_title",
                     "seo_meta_description",
                 ),
-                "description": "Optional homepage intro, announcement bar, and SEO metadata.",
+                "description": "Optional text box, announcement bar, and SEO metadata.",
             },
         ),
     )

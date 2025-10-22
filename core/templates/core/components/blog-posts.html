@@ -6,15 +6,21 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
     <!-- Blog Section Title and Intro -->
-    <a href="{% url 'blog:list' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
-      <h2 class="text-3xl sm:text-4xl lg:text-4xl font-semibold tracking-tight text-[color:var(--color-brand-primary)] mb-2">
-        {{ homepage_settings.blog_section_title }}
-      </h2>
-    </a>
+    <!-- Blog Section Title and Intro -->
+{% if homepage_settings.blog_section_title %}
+  <a href="{% url 'blog:list' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+    <h2 class="text-3xl sm:text-4xl lg:text-4xl font-semibold tracking-tight text-[color:var(--color-brand-primary)] mb-2">
+      {{ homepage_settings.blog_section_title }}
+    </h2>
+  </a>
+{% endif %}
 
-    <p class="text-[color:var(--color-font-main)] mb-8 max-w-3xl mx-auto leading-relaxed">
-      {{ homepage_settings.blog_section_intro|safe }}
-    </p>
+{% if homepage_settings.blog_section_intro %}
+  <p class="text-[color:var(--color-font-main)] mb-8 max-w-3xl mx-auto leading-relaxed">
+    {{ homepage_settings.blog_section_intro|safe }}
+  </p>
+{% endif %}
+
 
     {% if blog_posts %}
       <div class="grid grid-cols-1 md:grid-cols-3 mt-8 gap-8">

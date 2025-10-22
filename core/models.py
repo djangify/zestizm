@@ -128,6 +128,8 @@ class HomePageSettings(models.Model):
     # --- Blog Posts Section ---
     blog_section_title = models.CharField(
         max_length=150,
+        blank=True,
+        null=True,
         default="Latest Blog Posts",
         help_text="Displayed above the blog posts grid.",
     )
@@ -145,7 +147,12 @@ class HomePageSettings(models.Model):
     additional_products_title = models.CharField(
         max_length=150, default="More to Explore"
     )
-    homepage_intro = models.TextField(blank=True, null=True)
+    closing_text = models.TextField(
+        "Closing Text (End of Homepage)",
+        blank=True,
+        null=True,
+        help_text="Optional text box shown after the download CTA at the bottom of the homepage.",
+    )
     announcement_bar_text = models.CharField(max_length=200, blank=True, null=True)
     seo_meta_title = models.CharField(max_length=150, blank=True, null=True)
     seo_meta_description = models.CharField(max_length=255, blank=True, null=True)

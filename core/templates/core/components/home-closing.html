@@ -1,0 +1,14 @@
+{% if homepage_settings.closing_text %}
+<section
+  id="home-closing"
+  class="max-w-5xl mx-auto px-6 md:px-12 py-12 text-[color:var(--color-font-main)]"
+  role="region"
+  aria-label="Closing Text Section"
+>
+  <div class="border border-[color:var(--color-brand-accent)] rounded-md p-8  ">
+    <div class="prose max-w-none text-left">
+      {{ homepage_settings.closing_text|safe }}
+    </div>
+  </div>
+</section>
+{% endif %}

@@ -11,14 +11,14 @@
     
     {% if featured_products %}
       <!-- Grid with About + Products -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
     {% else %}
       <!-- Single Full-Width About Box -->
       <div class="grid grid-cols-1">
     {% endif %}
 
         <!-- ABOUT / INTRO BOX -->
-        <div class="border-2 border-[color:var(--color-brand-accent)] p-6 flex flex-col justify-center hover:shadow-md transition rounded-md {% if not featured_products %}w-full col-span-full{% endif %}">
+        <div class="border border-[color:var(--color-brand-accent)] p-6 flex flex-col mt-8  rounded-md {% if not featured_products %}w-full col-span-full{% endif %}">
           
           {% if homepage_settings.about_image %}
             <figure class="mb-6 flex justify-center">
@@ -36,7 +36,7 @@
 
           <h2 
             id="about-title" 
-            class="text-3xl font-semibold text-[color:var(--color-font-main)] mb-4 text-center sm:text-left"
+            class="text-3xl font-semibold text-[color:var(--color-font-main)] mb-4 text-center"
           >
             {{ homepage_settings.about_title }}
           </h2>
