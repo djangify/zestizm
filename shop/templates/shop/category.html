@@ -45,7 +45,7 @@
 
           <div class="flex items-center justify-between mt-auto">
             <span class="text-lg font-semibold text-[color:var(--color-font-main)]">
-              £{{ product.current_price|floatformat:2 }}
+              ${{ product.current_price|floatformat:2 }}
             </span>
             <a href="{{ product.get_absolute_url }}" 
                class="text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold text-sm transition">

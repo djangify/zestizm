@@ -49,7 +49,7 @@
                 <!-- Right: Price + Download -->
                 <div class="text-right">
                   <p class="font-semibold text-[color:var(--color-font-main)]">
-                    £{{ item.price|floatformat:2 }}
+                    ${{ item.price|floatformat:2 }}
                   </p>
 
                   {% if item.product.files or item.product.get_download_url %}
@@ -71,7 +71,7 @@
             <!-- Order Total -->
             <div class="mt-4 pt-4 border-t border-[color:var(--color-brand-accent)]/30 flex justify-between text-lg font-semibold text-[color:var(--color-font-main)]">
               <span>Total</span>
-              <span>£{{ order.total_price|floatformat:2 }}</span>
+              <span>${{ order.total_price|floatformat:2 }}</span>
             </div>
           </div>
         </div>

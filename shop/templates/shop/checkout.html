@@ -19,14 +19,14 @@
               <p class="text-sm text-gray-500">Quantity: {{ item.quantity }}</p>
             </div>
             <div class="text-right font-semibold text-[color:var(--color-font-main)]">
-              £{{ item.total_price|floatformat:2 }}
+              ${{ item.total_price|floatformat:2 }}
             </div>
           </div>
           {% endfor %}
         </div>
         <div class="mt-6 pt-6 border-t border-gray-200 flex justify-between text-lg font-semibold text-[color:var(--color-font-main)]">
           <span>Total</span>
-          <span>£{{ cart.get_total_price|floatformat:2 }}</span>
+          <span>${{ cart.get_total_price|floatformat:2 }}</span>
         </div>
       </div>
 
@@ -76,7 +76,7 @@
 
           <button type="submit" id="submit-button"
                   class="w-full md:w-auto px-6 py-3 bg-[color:var(--color-brand-accent)] text-white font-semibold rounded-lg hover:opacity-90 transition">
-            Pay £{{ cart.get_total_price|floatformat:2 }}
+            Pay ${{ cart.get_total_price|floatformat:2 }}
           </button>
         </form>
       </div>

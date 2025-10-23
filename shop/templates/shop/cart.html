@@ -25,7 +25,7 @@
               <h3 class="text-base font-semibold text-[color:var(--color-font-main)] mb-1">
                 {{ item.product.title }}
               </h3>
-              <p class="text-sm text-gray-600">Price: £{{ item.price|floatformat:2 }}</p>
+              <p class="text-sm text-gray-600">Price: ${{ item.price|floatformat:2 }}</p>
             </div>
           </div>
 
@@ -45,7 +45,7 @@
             </form>
 
             <span class="font-semibold text-[color:var(--color-brand-primary)]">
-              £{{ item.total_price|floatformat:2 }}
+            ${{ item.total_price|floatformat:2 }}
             </span>
 
             <form method="post" action="{% url 'shop:cart_remove' item.product.id %}">
@@ -61,7 +61,7 @@
       <div class="mt-10 bg-gray-50 rounded-lg p-6 flex flex-col gap-4">
         <div class="flex justify-between items-center text-[color:var(--color-font-main)] text-sm md:text-base">
           <p>Total Items: <strong>{{ cart|length }}</strong></p>
-          <p>Total: <strong>£{{ cart.get_total_price|floatformat:2 }}</strong></p>
+          <p>Total: <strong>${{ cart.get_total_price|floatformat:2 }}</strong></p>
         </div>
 
         <!-- Buttons -->

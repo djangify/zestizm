@@ -43,7 +43,7 @@
           <strong>Order ID:</strong> {{ order.id }}
         </p>
         <p class="text-[color:var(--color-font-main)]">
-          <strong>Total Amount:</strong> £{{ order.get_total_cost|floatformat:2 }}
+          <strong>Total Amount:</strong>${{ order.get_total_cost|floatformat:2 }}
         </p>
       </div>
 
