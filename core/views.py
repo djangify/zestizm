@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 
 # --- Import models ---
-# Blog models (for news section)
+# Blog models (for blog section)
 from blog.models import Post, Category as BlogCategory
 
 # Shop models (for product listings)
@@ -142,25 +142,49 @@ def support(request):
 @require_GET
 def robots_txt(request):
     """
-    Robots.txt for production — blocks sensitive areas and legacy URLs,
-    allows public pages, and points to the current sitemap.
+    robots.txt for Zestizm.com
+    Optimised for search engines and AI answer engines.
     """
+
     lines = [
+        # --- AI and LLM Crawlers: explicitly allowed ---
+        "User-agent: GPTBot",
+        "Disallow:",
+        "User-agent: PerplexityBot",
+        "Disallow:",
+        "User-agent: ClaudeBot",
+        "Disallow:",
+        "User-agent: Google-Extended",  # used by Bard / Gemini
+        "Disallow:",
+        "User-agent: ChatGPT-User",
+        "Disallow:",
+        # --- All other crawlers ---
         "User-agent: *",
-        # Block sensitive or user areas
-        "Disallow: /accounts/",
+        # Block sensitive or duplicate areas
         "Disallow: /admin/",
+        "Disallow: /accounts/",
         "Disallow: /login/",
         "Disallow: /logout/",
         "Disallow: /register/",
         "Disallow: /dashboard/",
         "Disallow: /cart/",
         "Disallow: /checkout/",
-        # Block old/legacy paths
-        "Disallow: /policy/",
+        "Disallow: /orders/",
+        "Disallow: /media/private/",
+        # Allow key public content
+        "Allow: /",
+        "Allow: /shop/",
+        "Allow: /blog/",
         "Allow: /policies/",
         "Allow: /docs/",
-        # Sitemap location
+        "Allow: /support/",
+        # Sitemap reference
         f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}",
+        "#",
+        "# Zestizm – Age-Positive Zest For Life",
+        "# Helping women rediscover their zest for life with small, science-backed actions.",
+        "# Learn more at https://www.zestizm.com",
+        "#",
     ]
+
     return HttpResponse("\n".join(lines), content_type="text/plain")

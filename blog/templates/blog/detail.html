@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<!-- JSON-LD Schema for News Post -->
+<!-- JSON-LD Schema for blog Post -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,9 +35,9 @@
   }
 }
 </script>
-<section class="newsformat">
+<section class="blogformat">
 
-  {% include 'news/components/breadcrumb.html' %}
+  {% include 'blog/components/breadcrumb.html' %}
 
   <div class="border border-[color:var(--color-brand-accent)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
@@ -131,8 +131,8 @@
 
     <!-- Related & extras -->
     <div class="mt-16 space-y-12">
-      {% include "news/components/extras.html" %}
-      {% include "news/components/newsads.html" %}
+      {% include "blog/components/extras.html" %}
+      {% include "blog/components/blogads.html" %}
     </div>
     <div class="mb-6">
             <p class="text-sm  mb-2">Thanks, for sharing:</p>

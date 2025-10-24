@@ -124,6 +124,6 @@ SITE_URL = env("SITE_URL", default="https://www.zestizm.com")  # noqa: F405
 #         "core": {"handlers": ["file"], "level": "INFO", "propagate": True},
 #         "shop": {"handlers": ["file"], "level": "INFO", "propagate": True},
 #         "accounts": {"handlers": ["file"], "level": "INFO", "propagate": True},
-#         "news": {"handlers": ["file"], "level": "INFO", "propagate": True},
+#         "blog": {"handlers": ["file"], "level": "INFO", "propagate": True},
 #     },
 # }
