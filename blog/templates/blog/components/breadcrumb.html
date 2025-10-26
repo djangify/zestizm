@@ -2,32 +2,32 @@
   <ol class="flex flex-wrap items-center justify-center gap-2 text-sm text-[color:var(--color-font-main)]/70">
 
     <li class="flex items-center">
-      <a href="{% url 'core:home' %}" class="hover:text-[color:var(--color-brand-accent)] font-medium transition">Home</a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-accent)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <a href="{% url 'core:home' %}" class="hover:text-[color:var(--color-brand-secondary-contrast)] font-medium transition">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-secondary-contrast)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </li>
 
     <li class="flex items-center">
-      <a href="{% url 'blog:list' %}" class="hover:text-[color:var(--color-brand-accent)] font-medium transition">Blog</a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-accent)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <a href="{% url 'blog:list' %}" class="hover:text-[color:var(--color-brand-secondary-contrast)] font-medium transition">Blog</a>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-secondary-contrast)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </li>
 
     {% if post.category %}
     <li class="flex items-center">
-      <a href="{{ post.category.get_absolute_url }}" class="hover:text-[color:var(--color-brand-accent)] font-medium transition">
+      <a href="{{ post.category.get_absolute_url }}" class="hover:text-[color:var(--color-brand-secondary-contrast)] font-medium transition">
         {{ post.category.name }}
       </a>
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-accent)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mx-2 text-[color:var(--color-brand-secondary-contrast)]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </li>
     {% endif %}
 
     {% if post %}
-    <li class="text-[color:var(--color-brand-accent)] font-semibold truncate">{{ post.title|truncatechars:50 }}</li>
+    <li class="text-[color:var(--color-brand-secondary-contrast)]  truncate font-semibold">{{ post.title|truncatechars:70 }}</li>
     {% endif %}
   </ol>
 </nav>

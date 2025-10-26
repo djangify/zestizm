@@ -39,7 +39,7 @@
 
   {% include 'blog/components/breadcrumb.html' %}
 
-  <div class="border border-[color:var(--color-brand-accent)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="border border-[color:var(--color-brand-secondary-contrast)] max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
     <!-- Article image with lighthouse compatibility -->
     <section class="mb-4">
@@ -94,9 +94,9 @@
       <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-brand-dark)] leading-tight mb-3">
         {{ post.title }}
       </h1>
-      <p class="text-sm text-[color:var(--color-font-main)]/70">
-        {{ post.publish_date|date:"F j, Y" }} ·
-        <a href="{{ post.category.get_absolute_url }}" class="text-[color:var(--color-brand-accent)] hover:underline">
+      <p class="text-md text-[color:var(--color-font-main)]/70">
+        {% comment %} {{ post.publish_date|date:"F j, Y" }} · {% endcomment %}Category: 
+        <a href="{{ post.category.get_absolute_url }}" class="text-[color:var(--color-brand-secondary-contrast)] hover:underline">
           {{ post.category.name }}
         </a>
       </p>
@@ -116,11 +116,11 @@
 
     <!-- Resource block -->
     {% if post.resource_type != 'none' and post.resource %}
-    <div class="mt-12 p-6 border border-[color:var(--color-brand-accent)]/30 bg-white rounded-lg shadow-sm">
-      <h3 class="text-xl font-semibold mb-3 text-[color:var(--color-brand-dark)]">Download Resource</h3>
+    <div class="mt-12 p-6 border border-[color:var(--color-brand-secondary-contrast)] bg-white rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-3 text-[color:var(--color-font-main)]">Download Resource</h3>
       <p class="text-[color:var(--color-font-main)] mb-4">{{ post.resource_title|default:post.title }}</p>
       <a href="{{ post.resource.url }}"
-         class="inline-flex items-center gap-2 px-5 py-3 border border-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-secondary)] rounded-lg hover:bg-[color:var(--color-brand-secondary)] hover:text-white font-medium transition">
+         class="inline-flex items-center gap-2 px-5 py-3 border border-[color:var(--color-brand-secondary-contrast)] text-[color:var(--color-brand-secondary-contrast)] rounded-lg hover:bg-[color:var(--color-brand-secondary-contrast)] hover:text-white font-medium transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2"
              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>

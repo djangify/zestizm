@@ -18,15 +18,15 @@
 
     <!-- Category Section -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-6">Category</h2>
+      <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary-contrast)] mb-6">Category</h2>
 
       <!-- Category Filter Pills -->
       <div class="flex flex-wrap gap-3 mb-12">
         {% for category in categories %}
         <a href="{{ category.get_absolute_url }}"
-           class="px-4 py-2 text-sm font-semibold border border-[color:var(--color-brand-accent)] rounded-full
-                  text-[color:var(--color-font-main)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-light)] transition
-                  {% if current_category and current_category.id == category.id %} bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-light)]{% endif %}">
+           class="px-4 py-2 text-sm font-semibold border border-[color:var(--color-brand-primary-contrast)] rounded-full
+                  text-[color:var(--color-font-main)] hover:bg-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-secondary-contrast)] transition
+                  {% if current_category and current_category.id == category.id %} bg-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-light)]{% endif %}">
           {{ category.name }}
         </a>
         {% endfor %}
@@ -36,9 +36,9 @@
     <!-- Featured Blog Posts -->
     {% if featured_posts %}
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-8">Featured Articles</h2>
+      <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary-contrast)] mb-8">Featured Articles</h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
         {% for post in featured_posts|slice:"0:4" %}
         <article class="bg-white rounded-lg border border-[color:var(--color-brand-accent)]/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
           <a href="{{ post.get_absolute_url }}">
@@ -59,7 +59,7 @@
               {{ post.content|striptags|truncatewords:25 }}
             </p>
             <a href="{{ post.get_absolute_url }}"
-               class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">
+               class="mt-auto text-[color:var(--color-brand-primary-contrast)] hover:text-[color:var(--color-brand-primary)] font-semibold transition">
               Keep Reading →
             </a>
           </div>
@@ -71,9 +71,9 @@
 
     <!-- Regular Blog Posts -->
     {% if posts %}
-    <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary)] mb-8">Latest Articles</h2>
+    <h2 class="text-2xl font-bold text-[color:var(--color-brand-primary-contrast)] mb-8">Latest Articles</h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-8">
       {% for post in posts %}
       <article class="bg-white rounded-lg border border-[color:var(--color-brand-accent)]/30 shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
         <a href="{{ post.get_absolute_url }}">
@@ -94,7 +94,7 @@
             {{ post.content|striptags|truncatewords:25 }}
           </p>
           <a href="{{ post.get_absolute_url }}"
-             class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">
+             class="mt-auto text-[color:var(--color-brand-primary-contrast)] hover:text-[color:var(--color-brand-primary)] font-semibold transition">
             Keep Reading →
           </a>
         </div>
@@ -107,22 +107,22 @@
     <div class="flex justify-center items-center gap-2 mt-12 flex-wrap">
       {% if posts.has_previous %}
       <a href="?page={{ posts.previous_page_number }}"
-         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+         class="px-4 py-2 border border-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-primary-contrast)] rounded hover:bg-[color:var(--color-brand-primary-contrast)] hover:text-white transition">
         Previous
       </a>
       {% endif %}
 
       {% for i in posts.paginator.page_range %}
         {% if posts.number == i %}
-          <span class="px-4 py-2 bg-[color:var(--color-brand-primary)] text-white border border-[color:var(--color-brand-primary)] rounded">{{ i }}</span>
+          <span class="px-4 py-2 bg-[color:var(--color-brand-primary-contrast)] text-white border border-[color:var(--color-brand-primary-contrast)] rounded">{{ i }}</span>
         {% else %}
-          <a href="?page={{ i }}" class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">{{ i }}</a>
+          <a href="?page={{ i }}" class="px-4 py-2 border border-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-primary-contrast)] rounded hover:bg-[color:var(--color-brand-primary-contrast)] hover:text-white transition">{{ i }}</a>
         {% endif %}
       {% endfor %}
 
       {% if posts.has_next %}
       <a href="?page={{ posts.next_page_number }}"
-         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+         class="px-4 py-2 border border-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-primary-contrast)] rounded hover:bg-[color:var(--color-brand-primary-contrast)] hover:text-white transition">
         Next
       </a>
       {% endif %}

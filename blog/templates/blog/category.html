@@ -11,7 +11,7 @@
         {{ category.name }}
       </h1>
       <a href="{% url 'blog:list' %}"
-         class="text-[color:var(--color-brand-accent)] hover:text-[color:var(--color-brand-secondary)] transition font-medium inline-flex items-center gap-1">
+         class="text-[color:var(--color-brand-primary-contrast)] hover:text-[color:var(--color-brand-secondary)] transition font-medium inline-flex items-center gap-1">
         ← Back to Blog
       </a>
     </div>
@@ -19,7 +19,7 @@
     <!-- Posts Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 mt-8">
       {% for post in posts %}
-      <article class="bg-white border border-[color:var(--color-brand-accent)]/30 rounded-lg shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
+      <article class="bg-white border border-[color:var(--color-brand-primary)] rounded-md shadow-sm hover:shadow-md overflow-hidden flex flex-col transition">
         <!-- Image -->
         <div class="w-full h-48 overflow-hidden">
           {% if post.external_image_url %}
@@ -33,7 +33,7 @@
                onerror="this.onerror=null; this.src='https://img.youtube.com/vi/{{ post.get_youtube_video_id }}/hqdefault.jpg';">
           {% else %}
           <div class="w-full h-full bg-[color:var(--color-brand-light)] flex items-center justify-center">
-            <span class="text-[color:var(--color-brand-accent)]">No Image Available</span>
+            <span class="text-[color:var(--color-brand-primary-contrast)]">No Image Available</span>
           </div>
           {% endif %}
         </div>
@@ -47,7 +47,7 @@
 
           {% if "?" not in post.slug and "&" not in post.slug %}
           <a href="{{ post.get_absolute_url }}"
-             class="mt-auto text-[color:var(--color-brand-secondary)] hover:text-[color:var(--color-brand-accent)] font-semibold transition">
+             class="mt-auto text-[color:var(--color-brand-primary-contrast)] hover:text-[color:var(--color-brand-primary)] font-semibold transition">
             Keep Reading →
           </a>
           {% else %}
@@ -67,17 +67,17 @@
     <div class="flex justify-center items-center gap-2 mt-12 flex-wrap">
       {% if posts.has_previous %}
       <a href="?page={{ posts.previous_page_number }}"
-         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+         class="px-4 py-2 border border-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-primary-contrast)] rounded hover:bg-[color:var(--color-brand-accent)] hover:text-white transition">
         Previous
       </a>
       {% endif %}
 
       {% for i in posts.paginator.page_range %}
       {% if posts.number == i %}
-      <span class="px-4 py-2 bg-[color:var(--color-brand-primary)] text-white border border-[color:var(--color-brand-primary)] rounded">{{ i }}</span>
+      <span class="px-4 py-2 bg-[color:var(--color-brand-primary-contrast)] text-white border border-[color:var(--color-brand-primary-contrast)] rounded">{{ i }}</span>
       {% else %}
       <a href="?page={{ i }}"
-         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+         class="px-4 py-2 border border-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-primary-contrast)] rounded hover:bg-[color:var(--color-brand-primary-contrast)] hover:text-white transition">
         {{ i }}
       </a>
       {% endif %}
@@ -85,7 +85,7 @@
 
       {% if posts.has_next %}
       <a href="?page={{ posts.next_page_number }}"
-         class="px-4 py-2 border border-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary)] rounded hover:bg-[color:var(--color-brand-primary)] hover:text-white transition">
+         class="px-4 py-2 border border-[color:var(--color-brand-primary-contrast)] text-[color:var(--color-brand-primary-contrast)] rounded hover:bg-[color:var(--color-brand-primary-contrast)] hover:text-white transition">
         Next
       </a>
       {% endif %}
