@@ -107,7 +107,7 @@ def handler403(request, exception):
 
 def handler404(request, exception):
     # Define which category to show (by slug)
-    category_slug = "tech-va"  # Change this to your desired category slug
+    category_slug = "zest"  # Change this to your desired category slug
 
     try:
         # Try to get the category
