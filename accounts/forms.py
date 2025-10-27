@@ -82,13 +82,19 @@ class UserEditForm(forms.ModelForm):
         fields = ("first_name", "last_name", "email")
         widgets = {
             "first_name": forms.TextInput(
-                attrs={"class": "w-full rounded-md border-gray-300 shadow-sm"}
+                attrs={
+                    "class": "w-full rounded-md border-[color:var(--color-brand-primary)]-300 shadow-sm"
+                }
             ),
             "last_name": forms.TextInput(
-                attrs={"class": "w-full rounded-md border-gray-300 shadow-sm"}
+                attrs={
+                    "class": "w-full rounded-md border-[color:var(--color-brand-primary)]-300 shadow-sm"
+                }
             ),
             "email": forms.EmailInput(
-                attrs={"class": "w-full rounded-md border-gray-300 shadow-sm"}
+                attrs={
+                    "class": "w-full rounded-md border-[color:var(--color-brand-primary)]-300 shadow-sm"
+                }
             ),
         }
 
@@ -101,7 +107,7 @@ class UserProfileForm(forms.ModelForm):
             "bio": forms.Textarea(
                 attrs={
                     "rows": 4,
-                    "class": "w-full rounded-md border-gray-300 shadow-sm",
+                    "class": "w-full rounded-md border-[color:var(--color-brand-primary)]-300 shadow-sm",
                 }
             ),
         }

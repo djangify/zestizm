@@ -1,63 +1,88 @@
-{% extends "base_email.html" %} {% block content %}
+{% extends "base_email.html" %}
+
+{% block content %}
 <tr>
-  <td style="padding: 20px; font-family: Arial, sans-serif; color: #333333">
-    <h1 style="margin-top: 0; color: #216a95; font-size: 24px">
-      Welcome to Djangify
+  <td
+    style="
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: var(--color-font-main, #2b2b2b);
+    "
+  >
+    <h1
+      style="
+        margin-top: 0;
+        color: var(--color-brand-primary, #927397);
+        font-size: 24px;
+        font-weight: bold;
+      "
+    >
+      Welcome to Zestizm
     </h1>
 
     <p>Hello {{ user.first_name|default:user.username }},</p>
 
     <p>
-      Thank you for registering with Djangify. I am excited to have
-      you join our community. As a member you will gain access to free resources related to online markerting and be able to download any purchased products.
+      Thank you for registering with <strong>Zestizm</strong>.  
+      I am delighted to have you join our community.  
+      As a member, you will gain access to free resources that help you
+      rediscover your spark and live with more zest every day.
     </p>
 
     <p>
       To complete your registration and verify your email address, please click
-      on the link below:
+      the button below:
     </p>
 
     <p style="text-align: center; margin: 30px 0">
       <a
         href="{{ verification_url }}"
         style="
-          background-color: #227c81;
-          color: white;
+          background-color: var(--color-brand-primary, #927397);
+          color: var(--color-brand-accent, #e7cbae);
           padding: 12px 24px;
           text-decoration: none;
           border-radius: 4px;
           font-weight: bold;
           display: inline-block;
+          font-family: Arial, sans-serif;
         "
         >Verify Your Email</a
       >
     </p>
 
     <p>
-      If the button above doesn't work, you can copy and paste the following
-      link into your browser:
+      If the button above does not work, copy and paste this link into your
+      browser:
     </p>
+
     <p
       style="
         word-break: break-all;
-        background-color: #f7fafc;
+        background-color: var(--color-brand-light, #f8fafc);
+        border-left: 4px solid var(--color-brand-accent, #e7cbae);
         padding: 10px;
         border-radius: 4px;
         font-size: 14px;
+        color: var(--color-font-main, #2b2b2b);
       "
     >
       {{ verification_url }}
     </p>
 
     <p>
-      This verification link will expire in 24 hours. If you didn't register for
-      an account, please ignore this email.
+      This verification link will expire in 24 hours.  
+      If you did not register for an account, please ignore this email.
     </p>
 
     <p>
       Best regards,<br />
-      The Djangify Team<br />
-      www.djangify.com
+      <strong>The Zestizm Team</strong><br />
+      <a
+        href="https://www.zestizm.com"
+        style="color: var(--color-brand-secondary, #d6809c); text-decoration: none;"
+        >www.zestizm.com</a
+      >
     </p>
   </td>
 </tr>

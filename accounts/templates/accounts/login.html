@@ -9,7 +9,7 @@
 
     {% if messages %}
       {% for message in messages %}
-        <div class="p-4 text-sm rounded-lg {% if message.tags == 'error' %}bg-red-50 text-red-800{% else %}bg-green-50 text-teal-700{% endif %}">
+        <div class="p-4 text-sm rounded-lg {% if message.tags == 'error' %}bg-red-50 text-red-800{% else %}bg-[color:var(--color-brand-light)]-50 text-teal-700{% endif %}">
           {{ message }}
         </div>
       {% endfor %}

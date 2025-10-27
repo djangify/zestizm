@@ -53,14 +53,14 @@ EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")  # noqa: F405
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")  # noqa: F405
 EMAIL_USE_TLS = env("EMAIL_USE_TLS", default=False)  # noqa: F405
 EMAIL_USE_SSL = env("EMAIL_USE_SSL", default=False)  # noqa: F405
-DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="djangify@djangify.com")  # noqa: F405
-SERVER_EMAIL = env("SERVER_EMAIL", default="djangify@djangify.com")  # noqa: F405
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="zestizmlives@gmail.com")  # noqa: F405
+SERVER_EMAIL = env("SERVER_EMAIL", default="zestizmlives@gmail.com")  # noqa: F405
 
 # Admin configuration
 ADMINS = [
     (
         env("ADMIN_NAME", default="Admin"),  # noqa: F405
-        env("ADMIN_EMAIL", default="djangify@djangify.com"),  # noqa: F405
+        env("ADMIN_EMAIL", default="zestizmlives@gmail.com"),  # noqa: F405
     ),
 ]
 
