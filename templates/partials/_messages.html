@@ -1,31 +1,43 @@
 {% if messages %}
-<div id="messages-container"
-     class="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md"
-     role="region"
-     aria-label="Site Notifications">
-
-  {% for message in messages %}
+  <!-- Site Notifications -->
   <div
-       class="alert rounded-md shadow-sm mb-3 px-4 py-3 text-sm font-medium flex items-start gap-2 fade-transition
-              {% if message.tags == 'success' %}alert-success
-              {% elif message.tags == 'error' %}alert-error
-              {% else %}alert-info{% endif %}"
-       role="alert"
-       aria-live="assertive"
-       aria-atomic="true">
+    id="messages-container"
+    class="fixed top-6 right-6 z-50 w-full max-w-sm space-y-3 fade-transition"
+    role="region"
+    aria-label="Notifications"
+  >
+    {% for message in messages %}
+      <div
+        class="alert-{{ message.tags }} rounded-lg border-l-4 shadow-md px-4 py-3 text-sm font-medium flex items-start gap-3 fade-transition"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <!-- Accessible Label -->
+        <span class="sr-only">
+          {% if message.tags == 'success' %}
+            Success message
+          {% elif message.tags == 'error' %}
+            Error message
+          {% else %}
+            Information message
+          {% endif %}
+        </span>
 
-    <span class="sr-only">
-      {% if message.tags == 'success' %}Success message{% elif message.tags == 'error' %}Error message{% else %}Notification{% endif %}
-    </span>
-
-    <strong class="font-semibold">
-      {% if message.tags == 'success' %}Success!
-      {% elif message.tags == 'error' %}Error!
-      {% else %}Notice{% endif %}
-    </strong>
-
-    <span class="ml-2">{{ message }}</span>
+        <!-- Icon + Text -->
+        <div class="flex-1">
+          <strong class="block font-semibold">
+            {% if message.tags == 'success' %}
+              Success
+            {% elif message.tags == 'error' %}
+              Error
+            {% else %}
+              Notice
+            {% endif %}
+          </strong>
+          <span>{{ message }}</span>
+        </div>
+      </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
 {% endif %}
