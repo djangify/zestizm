@@ -90,7 +90,6 @@ class HomePageSettingsAdmin(admin.ModelAdmin):
             "Optional / Global Settings",
             {
                 "fields": (
-                    # "featured_products_title",  # Removed for Zestizm site (always single About box)
                     "additional_products_title",
                     "closing_text",
                     "announcement_bar_text",
