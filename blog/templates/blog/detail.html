@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block open_graph_tags %}
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ post.meta_title|default:post.title }}" />
+  <meta property="og:description" content="{{ post.meta_description|default:post.content|striptags|truncatewords:25 }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:site_name" content="Zestizm" />
+  <meta property="og:image" content="{% if post.get_image_url %}{{ request.scheme }}://{{ request.get_host }}{{ post.get_image_url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/zestizm-logo.webp' %}{% endif %}" />
+
+  <!-- Article-specific metadata -->
+  {% if post.category %}
+    <meta property="article:section" content="{{ post.category.name|escape }}" />
+  {% else %}
+    <meta property="article:section" content="Everyday Aliveness" />
+  {% endif %}
+  {% for tag in post.tags.all %}
+    <meta property="article:tag" content="{{ tag.name|escape }}" />
+  {% endfor %}
+  <meta property="article:published_time" content="{% if post.publish_date %}{{ post.publish_date|date:'c' }}{% else %}{{ post.created|date:'c' }}{% endif %}" />
+  <meta property="article:modified_time" content="{{ post.updated|date:'c' }}" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@zestizm" />
+  <meta name="twitter:title" content="{{ post.meta_title|default:post.title }}">
+  <meta name="twitter:description" content="{{ post.meta_description|default:post.content|striptags|truncatewords:25 }}" />
+  <meta name="twitter:image" content="{% if post.get_image_url %}{{ request.scheme }}://{{ request.get_host }}{{ post.get_image_url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/zestizm-logo.wepb' %}{% endif %}">
+{% endblock %}
 
 {% block content %}
 <!-- JSON-LD Schema for blog Post -->
@@ -10,31 +38,40 @@
   "@type": "BlogPosting",
   "headline": "{{ post.title|escapejs }}",
   "description": "{{ post.meta_description|default:post.content|striptags|truncatechars:160|escapejs }}",
-
-  {% comment %} Image logic based on available fields {% endcomment %}
-  "image": "{% if post.get_image_url %}{{ request.scheme }}://{{ request.get_host }}{{ post.get_image_url }}{% elif post.get_youtube_thumbnail %}{{ post.get_youtube_thumbnail }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/ig-header-logo.jpg' %}{% endif %}",
-
-  "author": {
-  "@type": "Person",
-  "name": "Zestizm",
-  "url": "/create-mini-ecommerce/"
-},
+  
+  {% comment %} Choose image in priority order: featured, YouTube, fallback logo {% endcomment %}
+  "image": "{% if post.get_image_url %}{{ request.scheme }}://{{ request.get_host }}{{ post.get_image_url }}{% elif post.get_youtube_thumbnail %}{{ post.get_youtube_thumbnail }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/zestizm-logo.webp' %}{% endif %}",
+  
   "publisher": {
     "@type": "Organization",
-    "name": "Inspirational Guidance",
+    "name": "Zestizm",
+    "url": "{{ request.scheme }}://{{ request.get_host }}/",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/ig-header-logo.jpg' %}"
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/zestizm-logo.webp' %}",
+      "width": 300,
+      "height": 300
     }
   },
+
   "datePublished": "{% if post.publish_date %}{{ post.publish_date|date:'c' }}{% else %}{{ post.created|date:'c' }}{% endif %}",
   "dateModified": "{{ post.updated|date:'c' }}",
+  
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ request.build_absolute_uri }}"
+  },
+  
+  "articleSection": "{% if post.category %}{{ post.category.name|escapejs }}{% else %}Zest & Everyday Aliveness{% endif %}",
+  "keywords": ["zest", "aliveness", "everyday energy", "midlife women", "presence", "emotional flexibility"],
+  "about": {
+    "@type": "Thing",
+    "name": "Everyday Aliveness and Zest for Life",
+    "description": "Practical reflections, micro-actions, and sparks that help women reignite energy, curiosity, and presence in midlife."
   }
 }
 </script>
+
 <section class="blogformat">
 
   {% include 'blog/components/breadcrumb.html' %}
