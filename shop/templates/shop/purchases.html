@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="w-full  py-12">
+<section class="w-full py-12 bg-[color:var(--color-brand-light)]">
   <div class="max-w-5xl mx-auto px-6">
-    <div class="bg-white rounded-xl border border-[color:var(--color-brand-primary)] p-10">
+    <div class="bg-[color:var(--color-bg-default)] rounded-xl border border-[color:var(--color-brand-accent)] p-10 shadow-sm">
 
       <!-- Header -->
       <h1 class="text-3xl font-bold text-[color:var(--color-brand-primary)] mb-8">
@@ -26,7 +26,7 @@
                   Purchased on {{ order.created|date:"F j, Y" }}
                 </p>
               </div>
-              <span class="px-3 py-1 text-sm font-semibold rounded-full bg-green-100 text-green-700">
+              <span class="px-3 py-1 text-sm font-semibold rounded-full bg-[color:var(--color-brand-light)] text-[color:var(--color-brand-secondary)] border border-[color:var(--color-brand-accent)]">
                 {{ order.get_status_display }}
               </span>
             </div>
@@ -82,10 +82,10 @@
       <!-- Empty State -->
       <div class="text-center py-16">
         <p class="text-xl text-[color:var(--color-font-main)]/70 mb-8">
-          You haven't made any purchases yet.
+          You have not made any purchases yet.
         </p>
         <a href="{% url 'core:home' %}#latest-products"
-           class="inline-block px-6 py-3 rounded-lg bg-[color:var(--color-brand-secondary)] text-white font-semibold hover:bg-[color:var(--color-brand-primary)] transition">
+           class="inline-block px-6 py-3 rounded-lg bg-[color:var(--color-brand-secondary)] text-[color:var(--color-brand-light)] font-semibold hover:bg-[color:var(--color-brand-primary)] transition">
           Start Shopping
         </a>
       </div>
