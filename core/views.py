@@ -178,6 +178,7 @@ def robots_txt(request):
         "Allow: /policies/",
         "Allow: /docs/",
         "Allow: /support/",
+        "Allow: /zest-for-life/",
         # Sitemap reference
         f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}",
         "#",

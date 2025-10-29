@@ -10,7 +10,7 @@ urlpatterns = [
     path(
         "zest-for-life/",
         TemplateView.as_view(template_name="core/zest-for-life.html"),
-        name="zest-for-life/",
+        name="zest_for_life",
     ),
     path("robots.txt", views.robots_txt, name="robots_txt"),
 ]

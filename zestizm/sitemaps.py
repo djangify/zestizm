@@ -8,11 +8,23 @@ from infopages.models import InfoPage
 
 # --- Static pages ---
 class StaticViewSitemap(Sitemap):
-    priority = 1.0
     changefreq = "weekly"
 
     def items(self):
-        return ["core:home", "core:support"]
+        # Add zest-for-life so it appears in the sitemap
+        return [
+            "core:home",
+            "core:support",
+            "core:zest_for_life",
+        ]
+
+    def priority(self, item):
+        if item == "core:home":
+            return 1.0
+        if item == "core:zest_for_life":
+            return 1.0
+        if item == "core:support":
+            return 0.3
 
     def location(self, item):
         return reverse(item)
@@ -27,11 +39,22 @@ class StaticViewSitemap(Sitemap):
                 ),
                 "keywords": "age positive, zest for life, midlife confidence, emotional flexibility, small joys",
             }
+
         if item == "core:support":
             return {
                 "title": "Support – Zestizm Help & Contact",
                 "description": "Get in touch with Zestizm for product support, questions, or account help.",
                 "keywords": "zestizm support, customer help, contact",
+            }
+
+        if item == "core:zest_for_life":
+            return {
+                "title": "Zest for Life – A Practical Guide to Everyday Aliveness",
+                "description": (
+                    "Discover how to rebuild your zest for life with daily sparks of presence, movement, "
+                    "and reflection. A grounded, age-positive guide to feeling alive again."
+                ),
+                "keywords": "zest for life, aliveness, emotional energy, daily sparks, age positive, zestizm",
             }
 
 
