@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <!-- blog/templates/blog/list.html -->
 <section class="pageformat">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-    <!-- Page Heading -->
-    <div class="mb-12 text-center md:text-left">
-      <h1 class="text-3xl font-bold text-[color:var(--color-brand-dark)] leading-normal mb-4">
-        Age Positive Blog Posts
-      </h1>
-      <p class="text-[color:var(--color-font-main)]/80 max-w-3xl">
-        My take on embracing zest and living an Age Positive life.
-      </p>
-    </div>
+        <!-- Blog Name Title -->
+        {% if homepage_settings.blog_section_title %}
+          <a href="{% url 'blog:list' %}" class="hover:text-[color:var(--color-brand-secondary)] transition-colors">
+            <h1 class="text-3xl sm:text-4xl lg:text-4xl font-semibold tracking-tight text-[color:var(--color-brand-primary)] mb-2">
+              {{ homepage_settings.blog_section_title }}
+            </h1>
+          </a>
+        {% endif %}
 
     <!-- Category Section -->
     <section class="mb-12">
@@ -56,7 +53,7 @@
           <div class="p-6 flex flex-col flex-grow">
             <h2 class="text-lg font-bold text-[color:var(--color-brand-dark)] mb-2">{{ post.title }}</h2>
             <p class="text-[color:var(--color-font-main)]/80 mb-4 flex-grow">
-              {{ post.content|striptags|truncatewords:25 }}
+              {{ post.content|striptags|truncatewords:25|safe }}
             </p>
             <a href="{{ post.get_absolute_url }}"
                class="mt-auto text-[color:var(--color-brand-primary-contrast)] hover:text-[color:var(--color-brand-primary)] font-semibold transition">
@@ -91,7 +88,7 @@
         <div class="p-6 flex flex-col flex-grow">
           <h2 class="text-lg font-bold text-[color:var(--color-brand-dark)] mb-2">{{ post.title }}</h2>
           <p class="text-[color:var(--color-font-main)]/80 mb-4 flex-grow">
-            {{ post.content|striptags|truncatewords:25 }}
+            {{ post.content|striptags|truncatewords:25|safe }}
           </p>
           <a href="{{ post.get_absolute_url }}"
              class="mt-auto text-[color:var(--color-brand-primary-contrast)] hover:text-[color:var(--color-brand-primary)] font-semibold transition">

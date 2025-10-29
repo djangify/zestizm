@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Zest for Life: A Practical Guide to Everyday Aliveness{% endblock %}
+
+{% block open_graph_tags %}
+  <meta property="og:title" content="Zest for Life: A Practical Guide to Everyday Aliveness" />
+  <meta property="og:description" content="Zest isn’t hype or motivation. It’s quiet vitality built through noticing, acting, and feeling again — one spark at a time." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/zest-for-life-visual.webp" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zest for Life: A Practical Guide to Everyday Aliveness">
+  <meta name="twitter:description" content="A grounded, sensory approach to rebuilding energy and presence — discover the Zest Loop: Notice → Do → Feel → Reflect.">
+  <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}/static/images/zest-for-life-visual.webp">
+{% endblock %}
+
+{% block content %}
+<div class="bg-white">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-8">
+      <h1 class="text-4xl mb-4 font-bold text-gray-900">Zest for Life: A Practical Guide to Everyday Aliveness</h1>
+      <p class="mt-3 text-gray-700 max-w-4xl">
+        Zest isn’t hype or relentless optimism, it’s presence. It is learning to notice again, to act before you feel ready, and to build momentum that feels human. 
+        This guide helps you reclaim that sense of aliveness through small sparks, daily reflection, and mindful attention.
+      </p>
+    </header>
+
+    <!-- Quote -->
+    <section class="w-full">
+      <div class="max-w-7xl mb-8 mx-auto">
+        <blockquote class="p-4 px-6 text-xl italic border-l-4  border-[color:var(--color-brand-secondary-contrast)] bg-slate-50">
+          <p class="py-8">“Zest isn’t something you wait for — it’s something you train.” – <a href="https://zestizm.com/shop/product/the-zest-sparks-guide/" class="font-semibold text-[color:var(--color-brand-secondary-contrast)]" >The Zest Sparks Guide</p></a>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- What is Zest for Life -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+      <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-3">What is “Zest for Life”?</h2>
+        <p class="text-gray-700">
+          Living with zest means engaging your senses and emotions so life feels vivid again rather than rushed or distant. 
+          It is the art of participation over performance. Through small sparks and reflection, you learn to convert movement into meaning.
+        </p>
+        <ul class="list-disc ml-6 mt-4 text-gray-700 space-y-1">
+          <li><strong>Notice:</strong> Awareness is the ignition point.</li>
+          <li><strong>Do:</strong> Small, deliberate actions build energy.</li>
+          <li><strong>Feel:</strong> Emotion follows movement.</li>
+          <li><strong>Reflect:</strong> Learning turns effort into growth.</li>
+        </ul>
+      </div>
+      <aside class="bg-slate-50 rounded-xl border border-amber-100 p-6">
+        <h3 class="text-xl font-semibold text-[color:var(--color-brand-secondary-contrast)] mb-2">Why This Works</h3>
+        <p class="text-[color:var(--color-brand-secondary-contrast)]/90">
+          Zest builds through feedback. Each small act of noticing and movement teaches your system that energy is accessible now, not later. 
+          Over time, this loop of Notice → Do → Feel → Reflect — becomes your new rhythm of aliveness.
+        </p>
+      </aside>
+    </div>
+
+    <!-- Six Steps Cards -->
+    <section>
+      <h2 class="text-2xl mt-12 font-semibold text-gray-900">Six Steps to Reignite Your Zest for Life</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+
+        <a href="/blog/zest-notice-sparks/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div class="text-sm font-semibold text-gray-500">Step 1</div>
+          <h3 class="text-xl font-semibold text-gray-900 mt-1">How to Notice What Sparks You</h3>
+          <p class="text-gray-700 mt-2">Awareness is ignition. Learn how to recognise the small signals that lift your mood and focus.</p>
+          <span class="inline-flex items-center text-[color:var(--color-brand-secondary-contrast)] mt-3">Read more →</span>
+        </a>
+
+        <a href="/blog/zest-vs-momentum/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div class="text-sm font-semibold text-gray-500">Step 2</div>
+          <h3 class="text-xl font-semibold text-gray-900 mt-1">Zest vs Momentum: Turning Routine into Aliveness</h3>
+          <p class="text-gray-700 mt-2">Movement keeps you going; zest reminds you why it matters. Learn how they work together.</p>
+          <span class="inline-flex items-center text-[color:var(--color-brand-secondary-contrast)] mt-3">Read more →</span>
+        </a>
+
+        <a href="/blog/daily-practice-of-zest/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div class="text-sm font-semibold text-gray-500">Step 3</div>
+          <h3 class="text-xl font-semibold text-gray-900 mt-1">The Daily Practice of Zest</h3>
+          <p class="text-gray-700 mt-2">Five-minute micro-practices that return presence, energy, and mood stability.</p>
+          <span class="inline-flex items-center text-[color:var(--color-brand-secondary-contrast)] mt-3">Read more →</span>
+        </a>
+
+        <a href="/blog/design-for-aliveness/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div class="text-sm font-semibold text-gray-500">Step 4</div>
+          <h3 class="text-xl font-semibold text-gray-900 mt-1">Design for Aliveness</h3>
+          <p class="text-gray-700 mt-2">Shape your space and schedule so energy flows instead of leaks. Your environment is your quiet coach.</p>
+          <span class="inline-flex items-center text-[color:var(--color-brand-secondary-contrast)] mt-3">Read more →</span>
+        </a>
+
+        <a href="/blog/how-to-reignite-joy/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div class="text-sm font-semibold text-gray-500">Step 5</div>
+          <h3 class="text-xl font-semibold text-gray-900 mt-1">How to Reignite Joy When Life Feels Flat</h3>
+          <p class="text-gray-700 mt-2">Micro-joys and novelty reset your brain’s reward system. Discover how to feel light again.</p>
+          <span class="inline-flex items-center text-[color:var(--color-brand-secondary-contrast)] mt-3">Read more →</span>
+        </a>
+
+        <a href="/blog/reflect-and-renew-zest/" class="block bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div class="text-sm font-semibold text-gray-500">Step 6</div>
+          <h3 class="text-xl font-semibold text-gray-900 mt-1">Reflection: Keeping Your Spark Alive</h3>
+          <p class="text-gray-700 mt-2">Reflection completes the learning loop — it’s how zest becomes habit, not hype.</p>
+          <span class="inline-flex items-center text-[color:var(--color-brand-secondary-contrast)] mt-3">Read more →</span>
+        </a>
+      </div>
+    </section>
+     
+    <!-- Hero Visual -->
+    <div class="rounded-xl overflow-hidden border border-gray-200 shadow-sm mt-10 mb-10">
+      <img src="{% static 'images/zest-for-life-visual.webp' %}" alt="Zest for Life Infographic" class="w-full h-auto">
+    </div>
+
+     <!-- Quick Answers -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">Quick Answers to Common Zest Questions</h2>
+      <div class="space-y-6">
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">What does “zest for life” really mean?</h3>
+          <p class="mt-2 text-gray-700">It’s the habit of engaging fully with the present moment — using your senses and curiosity to feel alive again. <a href="/blog/what-is-zest-for-life/" class="text-[color:var(--color-brand-secondary-contrast)] hover:underline">Read more about zest →</a></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">Why do I feel like I’ve lost my spark?</h3>
+          <p class="mt-2 text-gray-700">Stress and sameness dull your nervous system. The cure isn’t more effort — it’s gentle novelty and attention. <a href="/blog/lost-my-spark-reignite-zest/" class="text-[color:var(--color-brand-secondary-contrast)] hover:underline">Try these ideas →</a></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">How can I rebuild zest after burnout?</h3>
+          <p class="mt-2 text-gray-700">Zest returns through repetition, not extremes. One mindful action a day can reawaken your energy. <a href="/blog/rebuild-zest-after-burnout/" class="text-[color:var(--color-brand-secondary-contrast)] hover:underline">Start small →</a></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">Is zest the same as happiness?</h3>
+          <p class="mt-2 text-gray-700">No. Happiness depends on outcomes; zest depends on participation. You can feel zest even in challenge. <a href="/blog/zest-vs-happiness/" class="text-[color:var(--color-brand-secondary-contrast)] hover:underline">Read more →</a></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">What’s one thing I can do right now?</h3>
+          <p class="mt-2 text-gray-700">Notice one pleasant detail — light, sound, colour — and breathe it in. Zest begins in that moment of awareness. <a href="/blog/zest-notice-sparks/" class="text-[color:var(--color-brand-secondary-contrast)] hover:underline">First step →</a></p>
+        </div>
+
+      </div>
+    </section>
+   
+    <!-- Free Download Section -->
+    <section class="mt-16 not-prose">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-center bg-slate-50 border border-amber-100 rounded-2xl p-8">
+          
+          <!-- Text (Left) -->
+          <div class="md:col-span-3 md:order-1 order-2">
+            <h2 class="text-2xl font-semibold text-gray-900">
+              Free Sample - Start Your First Spark Today
+            </h2>
+            <p class="text-gray-700 mt-2">
+              Download the opening chapter of The Zest Sparks Mini Guide - “What Zest Really Means.”
+              Inside you will discover why aliveness isn’t about constant happiness, how state change works in NLP, and one practical exercise to anchor your own spark. Five minutes of reading can shift your energy today.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <a href="https://zestizm.com/media/homepage/pdfs/preview-zestizm-zest-sparks-guide.pdf"
+                class="inline-flex items-center px-5 py-3 rounded-lg bg-amber-700 text-white font-medium hover:bg-amber-800">
+                Get the PDF
+              </a>
+              <a href="https://zestizm.com/shop/product/the-zest-sparks-guide/"
+                class="inline-flex items-center px-5 py-3 rounded-lg bg-white border border-gray-300 text-gray-800 font-medium hover:bg-gray-50">
+                Explore the Guide
+              </a>
+            </div>
+          </div>
+
+          <!-- Image (Right) -->
+          <div class="md:col-span-2 md:order-2 order-1 flex justify-end">
+            <div class="rounded-xl overflow-hidden border border-gray-200 bg-white max-w-sm md:max-w-full">
+              <img src="{% static 'images/zest-sparks-planner-preview.webp' %}"
+                  alt="Zest Sparks Planner Preview"
+                  class="w-full h-auto object-cover">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+      <!-- Featured Articles -->
+    <section class="mt-16">
+      <h2 class="text-2xl mt-8 font-semibold text-gray-900">Featured Articles on Living With Zest</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all">
+          <h3 class="font-semibold text-lg text-[color:var(--color-brand-secondary-contrast)] mb-2"><a href="/blog/zest-vs-happiness/">Zest vs Happiness: Why Aliveness Matters More Than Positivity</a></h3>
+          <p class="text-gray-700">Understand the difference between outcome joy and everyday engagement.</p>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all">
+          <h3 class="font-semibold text-lg text-[color:var(--color-brand-secondary-contrast)] mb-2"><a href="/blog/zest-vs-motivation/">Zest vs Motivation: How to Act First and Feel Later</a></h3>
+          <p class="text-gray-700">Why motivation follows action, not the other way around.</p>
+        </div>
+        <div class="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-all">
+          <h3 class="font-semibold text-lg text-[color:var(--color-brand-secondary-contrast)] mb-2"><a href="/blog/science-of-small-joys/">The Science of Small Joys: Micro Moments That Rewire Mood</a></h3>
+          <p class="text-gray-700">Evidence-backed joy practices to keep your energy up.</p>
+        </div>
+      </div>
+      
+    </section>
+
+     {# --- banner ad goes to shop --- #}
+    <section class="mt-16">
+          <a href="https://zestizm.com/shop/product/the-zest-sparks-guide/" target="_blank">
+          <img src="https://zestizm.com/media/blog/ads/zest-sparks-guide-banner.webp" alt="Zest for life guide">
+      </a>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mt-16">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">FAQ</h2>
+      <div class="max-w-3xl">
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">What causes people to lose their zest for life?</summary>
+          <p class="mt-3 text-gray-700">Prolonged stress and sameness dull your senses. Over time, your brain reduces novelty and curiosity to conserve energy. Zest returns when you add movement, micro-joy, and gentle presence back into your day.</p>
+        </details>
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">Can I regain zest after burnout?</summary>
+          <p class="mt-3 text-gray-700">Yes. Zest rebuilds through consistency, not intensity. Start small — one spark, one walk, one breath — and repeat daily. Energy follows attention, not force.</p>
+        </details>
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">What’s the connection between zest and emotional resilience?</summary>
+          <p class="mt-3 text-gray-700">Zest strengthens resilience by re-engaging the senses. It keeps the nervous system flexible, so challenges feel recoverable instead of overwhelming.</p>
+        </details>
+        <details class="border border-gray-200 rounded-lg p-4 mb-4">
+          <summary class="font-semibold cursor-pointer">How long does it take to feel alive again?</summary>
+          <p class="mt-3 text-gray-700">Most people notice small shifts within a week of daily sparks. Presence builds gradually — a quiet warmth that spreads through repetition.</p>
+        </details>
+      </div>
+
+      <!-- JSON-LD FAQ Schema -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What causes people to lose their zest for life?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Prolonged stress and sameness dull the senses. Over time, the brain reduces novelty and curiosity to conserve energy. Zest returns when you add movement, micro-joy, and gentle presence back into your day."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I regain zest after burnout?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Zest rebuilds through consistency, not intensity. Start small — one spark, one walk, one breath — and repeat daily. Energy follows attention, not force."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What’s the connection between zest and emotional resilience?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Zest strengthens resilience by re-engaging the senses. It keeps the nervous system flexible, so challenges feel recoverable instead of overwhelming."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to feel alive again?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most people notice small shifts within a week of daily sparks. Presence builds gradually — a quiet warmth that spreads through repetition."
+            }
+          }
+        ]
+      }
+      </script>
+    </section>
+
+    <!-- Reflection -->
+    <section class="mt-16">
+      <div class="rounded-2xl border border-gray-200 p-6 bg-gray-50">
+        <h2 class="text-xl font-semibold text-gray-900">Reflection</h2>
+        <p class="text-gray-700 mb-6 mt-2">
+          Today, don’t chase a better mood. Chase a moment of aliveness — one spark that reconnects you to your own rhythm.
+        </p>
+      </div>
+    </section>
+
+  </section>
+</div>
+{% endblock %}
