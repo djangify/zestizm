@@ -37,16 +37,13 @@
     {% if homepage_settings.hero_button_text and homepage_settings.hero_button_link %}
       <a 
         href="{{ homepage_settings.hero_button_link }}"
-        class="inline-block bg-[var(--color-brand-primary)] 
-              text-[var(--color-brand-light)] 
-              mt-10 px-10 py-5 
-              rounded-md text-lg font-semibold 
-              shadow-md hover:bg-[var(--color-brand-secondary)] 
-              hover:text-[var(--color-brand-light)] 
-              transition-transform transform hover:scale-[1.02] 
-              focus-visible:outline-none focus-visible:ring-2 
-              focus-visible:ring-[var(--color-brand-secondary)]"
-        aria-label="{{ homepage_settings.hero_button_text }}"
+        class="relative z-20 inline-block bg-[var(--color-brand-primary)] 
+        text-[var(--color-brand-light)] mt-10 px-10 py-5 rounded-md text-lg font-semibold 
+        shadow-md hover:bg-[var(--color-brand-secondary)] 
+        hover:text-[var(--color-brand-light)] 
+        transition-transform transform hover:scale-[1.02] 
+        focus-visible:outline-none focus-visible:ring-2 
+        focus-visible:ring-[var(--color-brand-secondary)]"
       >
         {{ homepage_settings.hero_button_text }}
       </a>

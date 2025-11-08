@@ -30,21 +30,6 @@
         </div>
       </div>
 
-      {% if is_guest %}
-      <!-- /Register -->
-      <div class="bg-white border border-yellow-300 rounded-lg shadow-sm p-6 mb-8">
-        <h2 class="text-xl font-semibold text-gray-800 mb-3">Register or Login</h2>
-        <p class="text-[color:var(--color-font-main)]">
-          Your downloads will be available in your account area.
-          Please
-          <a href="{% url 'accounts:register' %}" class="text-[color:var(--color-brand-secondary)] font-semibold hover:underline">Register</a>
-          or
-          <a href="{% url 'accounts:login' %}" class="text-[color:var(--color-brand-secondary)] font-semibold hover:underline">Login</a>
-          before completing this purchase.
-        </p>
-      </div>
-      {% endif %}
-
       <!-- Customer Details -->
       <div class="bg-gray-50 border border-[color:var(--color-brand-accent)]/30 rounded-lg p-6 mb-8">
         <h2 class="text-lg font-semibold mb-2 text-[color:var(--color-font-main)]">Customer Details</h2>

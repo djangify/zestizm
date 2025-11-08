@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse, HttpResponseBadRequest, FileResponse, Http404
+from django.http import HttpResponse, FileResponse, Http404
 from django.views.decorators.http import require_POST, require_http_methods
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
@@ -14,7 +14,7 @@ import os
 import logging
 import mimetypes
 from wsgiref.util import FileWrapper
-from shop.forms import GuestDetailsForm, ProductReviewForm
+from shop.forms import ProductReviewForm
 from .emails import send_order_confirmation_email, send_download_link_email
 from .cart import Cart
 
@@ -138,59 +138,31 @@ def cart_update(request, product_id):
     return redirect("shop:cart_detail")
 
 
+@login_required
 def checkout(request):
     cart = Cart(request)
     if len(cart) == 0:
         messages.error(request, "Your cart is empty.")
         return redirect("shop:cart_detail")
 
-    guest_form = None
-    if not request.user.is_authenticated:
-        if request.method == "POST":
-            guest_form = GuestDetailsForm(request.POST)
-            if guest_form.is_valid():
-                request.session["guest_details"] = {
-                    "first_name": guest_form.cleaned_data["first_name"],
-                    "last_name": guest_form.cleaned_data["last_name"],
-                    "email": guest_form.cleaned_data["email"],
-                    "phone": guest_form.cleaned_data["phone"],
-                }
-            else:
-                return HttpResponseBadRequest("Invalid form data")
-        else:
-            guest_form = GuestDetailsForm()
+    total_price = cart.get_total_price()
+    if total_price <= 0:
+        messages.error(request, "Invalid cart total")
+        return redirect("shop:cart_detail")
 
     try:
-        total_price = cart.get_total_price()
-
-        if total_price <= 0:
-            messages.error(request, "Invalid cart total")
-            return redirect("shop:cart_detail")
-
-        # Create a new PaymentIntent each time user loads checkout
         intent = stripe.PaymentIntent.create(
-            amount=int(total_price * 100),  # Stripe works in pence/cents
+            amount=int(total_price * 100),
             currency=getattr(settings, "STRIPE_CURRENCY", "gbp"),
             payment_method_types=["card"],
-            metadata={
-                "user_id": str(request.user.id)
-                if request.user.is_authenticated
-                else "guest",
-                "is_guest": str(not request.user.is_authenticated),
-            },
-            receipt_email=(
-                request.user.email
-                if request.user.is_authenticated
-                else request.session.get("guest_details", {}).get("email")
-            ),
+            metadata={"user_id": str(request.user.id)},
+            receipt_email=request.user.email,
         )
 
         context = {
             "client_secret": intent.client_secret,
             "stripe_publishable_key": settings.STRIPE_PUBLISHABLE_KEY,
             "cart": cart,
-            "guest_form": guest_form,
-            "is_guest": not request.user.is_authenticated,
             "payment_intent_id": intent.id,
         }
         return render(request, "shop/checkout.html", context)
@@ -313,11 +285,7 @@ def download_product(request, product_id):
             "site_url": settings.SITE_URL,
             "downloads_remaining": order_item.downloads_remaining,
             "user": order_item.order.user,
-            "email": (
-                order_item.order.user.email
-                if order_item.order.user
-                else order_item.order.guest_details.email
-            ),
+            "email": order_item.order.user.email,
             "unsubscribe_url": f"{settings.SITE_URL}/profiles/email-preferences/",
         }
         send_download_link_email(order_item, context)

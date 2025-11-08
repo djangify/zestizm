@@ -25,7 +25,7 @@ def send_order_confirmation_email(order):
 
         context = {
             "order_id": order.order_id,
-            "first_name": order.user.first_name if order.user else "",
+            "first_name": order.user.first_name,
             "email": order.email,
             "items": items_data,
             "total": order.total_price,
@@ -87,11 +87,8 @@ def send_download_link_email(order_item):
             "downloads_remaining": downloads_remaining,
         }
 
-        if order_item.order.user:
-            context["user"] = order_item.order.user
-            to_email = order_item.order.user.email
-        else:
-            to_email = order_item.order.email
+        context["user"] = order_item.order.user
+        to_email = order_item.order.user.email
 
         html_content = render_to_string("accounts/email/download_link.html", context)
         text_content = strip_tags(html_content)
