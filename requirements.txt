@@ -1,40 +1,25 @@
 # Core Django + essential packages
-Django==5.2.7
+Django==6.0
 django-environ
 django-tinymce
 django-widget-tweaks
-django-crispy-forms
 django-js-asset
 django-storages
 whitenoise
-
 # PostgreSQL database
-psycopg2-binary
-
+psycopg[binary]
 # Email, security, and deployment
 gunicorn
 cryptography
-
 # Stripe payments
 stripe
-
 # Image + media handling
 Pillow
-
 # Utility packages
 requests
 beautifulsoup4
 django-widget-tweaks
-
-
-# Optional rich text / admin tools
-django-ckeditor
-
 # Type and parsing dependencies
 typing_extensions
-packaging
-sqlparse
-urllib3
-certifi
-idna
-charset-normalizer
+
+
